@@ -1,0 +1,125 @@
+.pf-contact__inner {
+    max-width: 920px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 56px;
+    align-items: start;
+}
+
+.pf-contact__title {
+    font-size: clamp(30px, 3.6vw, 46px);
+}
+
+.pf-contact__copy {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--pf-body);
+}
+
+/* Form */
+.pf-contact__form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.pf-field__label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--pf-muted);
+}
+
+.pf-field__input {
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--pf-surface);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 12px;
+    color: var(--pf-text);
+    font-family: inherit;
+    font-size: 15.5px;
+}
+
+textarea.pf-field__input {
+    resize: vertical;
+}
+
+.pf-field__input.is-invalid {
+    border-color: var(--pf-danger);
+}
+
+.pf-field__error {
+    margin: 7px 0 0;
+    font-size: 13px;
+    color: var(--pf-danger);
+}
+
+.pf-contact__submit {
+    align-self: flex-start;
+}
+
+/* Success panel */
+.pf-contact__success {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 40px 36px;
+    background: var(--pf-surface);
+    border: 1px solid rgba(46, 230, 166, 0.25);
+    border-radius: 20px;
+}
+
+.pf-contact__success-icon {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(46, 230, 166, 0.14);
+    color: var(--pf-accent);
+}
+
+.pf-contact__success-title {
+    margin: 0;
+    font-family: var(--pf-font-display);
+    font-weight: 600;
+    font-size: 23px;
+}
+
+.pf-contact__success-copy {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--pf-soft);
+}
+
+.pf-contact__again {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 11px 20px;
+    border-radius: 11px;
+    background: transparent;
+    border: 1px solid var(--pf-border-strong);
+    color: var(--pf-text);
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 14.5px;
+    cursor: pointer;
+}
+
+.pf-contact__again:hover {
+    color: var(--pf-text);
+    border-color: rgba(255, 255, 255, 0.28);
+}
+
+@media (max-width: 900px) {
+    .pf-contact__inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}

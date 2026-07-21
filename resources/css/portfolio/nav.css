@@ -1,0 +1,69 @@
+.pf-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 7vw;
+    backdrop-filter: blur(14px);
+    background: rgba(12, 14, 17, 0.72);
+    border-bottom: 1px solid var(--pf-border);
+}
+
+.pf-nav__brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    color: var(--pf-text);
+    font-family: var(--pf-font-display);
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: -0.02em;
+}
+
+.pf-nav__brand:hover {
+    color: var(--pf-text);
+}
+
+.pf-nav__right {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+}
+
+.pf-nav__links {
+    display: flex;
+    gap: 30px;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--pf-muted);
+}
+
+.pf-nav__links a {
+    color: inherit;
+}
+
+.pf-nav__links a:hover {
+    color: var(--pf-text);
+}
+
+.pf-nav__cta {
+    padding: 10px 20px;
+    border-radius: 11px;
+    background: var(--pf-accent);
+    color: var(--pf-on-accent);
+    font-size: 14.5px;
+    font-weight: 700;
+}
+
+.pf-nav__cta:hover {
+    background: var(--pf-accent-bright);
+    color: var(--pf-on-accent);
+}
+
+@media (max-width: 720px) {
+    .pf-nav__links {
+        display: none;
+    }
+}

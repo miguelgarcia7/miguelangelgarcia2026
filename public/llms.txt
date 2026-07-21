@@ -1,0 +1,64 @@
+# Miguel Angel Garcia — Senior Full-Stack Engineer
+
+> Personal portfolio of Miguel Angel Garcia, a senior full-stack engineer in
+> Dallas–Fort Worth, TX with 15+ years building websites and web applications,
+> leading development teams, and shipping AI-powered products.
+
+## About
+
+- Name: Miguel Angel Garcia
+- Role: Senior Full-Stack Engineer
+- Location: Dallas–Fort Worth, TX, USA
+- Experience: 15+ years (since 2008); has worked in and led development teams
+- AI: builds with Claude Code daily (2+ years of AI-first development) and
+  works with the Anthropic Claude API and OpenAI API
+- Recent work: QCP Staffing / Minute and Appointment Hub — two major
+  applications built end-to-end with an AI-first workflow over the last
+  two years
+- Mentorship: mentors students through a code mentorship program with
+  UT Dallas
+- Currently: available for new opportunities; seeking a leadership role on
+  an intelligent, creative team
+- Motto: "Never. Stop. Learning."
+
+## Career
+
+- 2024 — Present: Senior Software Developer at Jonah Digital
+  (jonahdigital.com) — builds and maintains the products behind Jonah's
+  apartment marketing platform for the multifamily industry
+- 2024 — Present: Freelance Senior Engineer — AI-first products including
+  QCP Staffing / Minute and Appointment Hub
+- 2015 — 2024: Director of Web Development at RealPage — led a team of
+  developers; B2B & B2C marketing websites, CRM/CMS platforms (including
+  realpage.com, Kigo, and Propertyware); tools that improved efficiency
+  70% and reduced costs 60%
+- 2013 — 2015: Web Developer at Ivie — digital media, custom CMS (including
+  the Fresh Thyme CMS application), responsive web & mobile applications
+- 2008 — 2013: Lead Web Developer at A.M. Design — websites, mobile sites,
+  and apps for clients including Commscope, Watermark Church, and Red Rocks
+  Church; custom CMS; technical direction
+
+## Brands worked with
+
+AT&T, Harley-Davidson, Dr Pepper, Sonic, Cricket Wireless, RealPage,
+Twin Peaks, Which Wich, Fresh Thyme, Stagen — directly or through
+agency work.
+
+## Skills
+
+- Languages & frameworks: HTML, CSS, JavaScript, React JS, Vue JS,
+  TypeScript, PHP, Laravel, Tailwind CSS
+- Infrastructure & delivery: MySQL, AWS, CI/CD, Git, Docker, Laravel Forge,
+  automated testing (Pest/PHPUnit)
+- AI & workflow: Claude Code, Anthropic Claude API, OpenAI API
+
+## Site sections
+
+- [Home](https://miguelgarcia.site/): hero, about, experience, selected
+  projects, skills & tools, and a contact form
+- Contact: via the form at https://miguelgarcia.site/#contact
+
+## Technical notes
+
+This site is fully server-rendered (Laravel + Blade) — all content is
+available in the HTML without executing JavaScript.

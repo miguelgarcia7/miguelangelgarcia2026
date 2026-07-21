@@ -1,0 +1,24 @@
+.pf-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    padding: 38px 7vw;
+    border-top: 1px solid var(--pf-border);
+}
+
+.pf-footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-family: var(--pf-font-display);
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.pf-footer__note {
+    margin: 0;
+    font-size: 14px;
+    color: var(--pf-faint);
+}
