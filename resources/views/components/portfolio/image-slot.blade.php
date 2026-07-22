@@ -2,7 +2,7 @@
 
 <div class="pf-image-slot">
     @if ($src)
-        <img class="pf-image-slot__img" src="{{ $src }}" alt="{{ $alt }}" loading="lazy">
+        <img class="pf-image-slot__img" src="{{ asset($src) }}" alt="{{ $alt }}" loading="lazy">
     @else
         <div class="pf-image-slot__placeholder" aria-hidden="true">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">

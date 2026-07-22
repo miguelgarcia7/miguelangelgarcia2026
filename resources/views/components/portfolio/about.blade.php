@@ -16,7 +16,7 @@
         <p class="pf-about__text"> I'm interested in senior engineering opportunities where I can combine hands-on development with technical leadership, architecture, mentorship, and product thinking. That may take the form of an engineering leadership position or a senior individual contributor role, depending on the team and the problems being solved. </p>
         <p class="pf-about__text"> Over the past two years, AI-assisted development has become an important part of my day-to-day workflow. I use tools such as Claude Code and work directly with the Anthropic and OpenAI APIs to accelerate research, prototyping, implementation, and refinement. My two most recent applications, QCP Staffing / Minute and Appointment Hub, were developed end to end using this AI-enabled approach. </p>
         <p class="pf-about__motto">
-            Never. Stop. <span class="pf-about__motto-accent">Learning.</span>
+            Never Stop <span class="pf-about__motto-accent">Learning.</span>
         </p>
         <div class="pf-about__stats">
             <div>

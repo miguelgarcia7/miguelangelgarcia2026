@@ -31,10 +31,8 @@ return [
     | Projects
     |--------------------------------------------------------------------------
     |
-    | The first two are real, recent applications. TODO(Miguel): correct
-    | their descriptions and tags — these are drafts. The remaining four are
-    | placeholders from the design brief; replace them with real work as
-    | case-study material is gathered.
+    | All six are real projects. TODO(Miguel): correct descriptions and
+    | tags where needed — some are drafts written from limited context.
     |
     */
 
@@ -42,38 +40,38 @@ return [
         [
             'title' => 'QCP Staffing / Minute',
             'description' => 'Staffing platform managing the full workflow end-to-end. One of two major applications built AI-first over the last two years.',
-            'tags' => ['Laravel', 'MySQL', 'AI-assisted'],
-            'image' => null,
+            'tags' => ['Laravel', 'MySQL', 'AI-assisted', 'CI/CD'],
+            'image' => '/images/projects/qcpstaffing.png',
         ],
         [
             'title' => 'Appointment Hub',
             'description' => 'Appointment scheduling platform that streamlines booking for businesses and their clients, developed with an AI-first workflow.',
-            'tags' => ['Laravel', 'MySQL', 'AI-assisted'],
-            'image' => null,
+            'tags' => ['Laravel', 'MySQL', 'AI-assisted', 'CI/CD'],
+            'image' => '/images/projects/appointmenthub.png',
         ],
         [
-            'title' => 'Aurora Commerce',
-            'description' => 'A headless storefront with a custom design system and blazing checkout.',
-            'tags' => ['UI/UX', 'React JS', 'Laravel'],
-            'image' => null,
+            'title' => 'SureNut',
+            'description' => 'Product marketing site for SureNut® — introducing the first reusable prevailing torque wheel fastener and turning visitors into leads.',
+            'tags' => ['UI/UX', 'Front-end', 'Marketing Site'],
+            'image' => '/images/projects/surenut.png',
         ],
         [
-            'title' => 'Finlytics Dashboard',
-            'description' => 'Real-time analytics dashboard visualizing millions of events.',
-            'tags' => ['Vue JS', 'PHP', 'MySQL'],
-            'image' => null,
+            'title' => 'SureNut Dashboard',
+            'description' => 'Back-end dashboard powering surenut.com — the operational side of the product, from lead management to site content.',
+            'tags' => ['Laravel', 'MySQL', 'Back-end'],
+            'image' => '/images/projects/surenut-dashboard.png',
         ],
         [
-            'title' => 'Pulse Fitness',
-            'description' => 'Cross-platform fitness tracker with live workout sync.',
-            'tags' => ['UI', 'React JS', 'AWS'],
-            'image' => null,
+            'title' => 'RealPage',
+            'description' => 'The corporate marketing site for RealPage (2024)  — built and evolved with my team while leading web development, along with the CMS platform behind it.',
+            'tags' => ['UI/UX', 'CMS', 'Team Lead'],
+            'image' => '/images/projects/realpage.png',
         ],
         [
-            'title' => 'Studio Portfolio CMS',
-            'description' => 'A flexible CMS letting creatives publish beautiful case studies.',
-            'tags' => ['Back-end', 'Laravel', 'MySQL'],
-            'image' => null,
+            'title' => 'Propertyware',
+            'description' => 'Marketing site for Propertyware (2019), RealPage\'s single-family property management platform — designed and shipped with my team.',
+            'tags' => ['UI/UX', 'CMS', 'Team Lead'],
+            'image' => '/images/projects/propertyware.png',
         ],
     ],
 

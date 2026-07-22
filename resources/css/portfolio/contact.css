@@ -1,5 +1,6 @@
 .pf-contact__inner {
-    max-width: 920px;
+    /* Matches .pf-stack__group so Contact aligns with the section above. */
+    max-width: 1040px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 0.9fr 1.1fr;
