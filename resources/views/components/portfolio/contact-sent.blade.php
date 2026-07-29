@@ -12,7 +12,10 @@
     <p class="text-base leading-[1.6] text-soft">
         Thanks{{ $name ? ', '.$name : '' }} — I'll reply to you soon.
     </p>
-    <a href="{{ route('home') }}#contact" class="mt-1.5 inline-block cursor-pointer rounded-[11px] border border-line-strong px-5 py-[11px] text-[14.5px] font-semibold text-ink hover:border-white/30">
+    {{-- The query string matters: a bare "/#contact" is the URL we are
+         already on, so the browser would only scroll and never re-render
+         the form. Script intercepts this and restores the form in place. --}}
+    <a href="{{ route('home') }}?contact=new#contact" data-send-another class="mt-1.5 inline-block cursor-pointer rounded-[11px] border border-line-strong px-5 py-[11px] text-[14.5px] font-semibold text-ink hover:border-white/30">
         Send another
     </a>
 </div>

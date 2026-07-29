@@ -30,15 +30,14 @@ if (root) {
 
 /**
  * Contact form: validate inline, score with reCAPTCHA, submit without a
- * page load. Everything here is enhancement — with JavaScript off the form
- * posts normally and the server does the same validation and rendering.
+ * page load, and swap between the form and the sent confirmation in place.
+ *
+ * All of this is enhancement — with JavaScript off the form posts normally,
+ * and the server runs the same validation and renders the same panels.
  */
-const form = document.querySelector('[data-contact-form]');
+const panel = document.querySelector('[data-contact-panel]');
 
-if (form) {
-    const panel = form.closest('[data-contact-panel]');
-    const formError = form.querySelector('[data-form-error]');
-    const button = form.querySelector('button[type="submit"]');
+if (panel) {
     const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     // Mirrors App\Http\Requests\ContactRequest, message for message. The
@@ -54,20 +53,23 @@ if (form) {
             return v.trim().length >= 10 ? '' : 'A little more detail, please (10+ characters).';
         },
     };
-
     const fieldNames = Object.keys(rules);
-    const fieldOf = (name) => form.elements[name];
 
-    const setError = (name, message) => {
-        const input = fieldOf(name);
+    // Captured while the form is still on the page so "Send another" can
+    // restore it instantly. When the panel is already showing the sent
+    // state (a submit that happened without JavaScript) there is nothing to
+    // restore, and the link is left to navigate on its own.
+    const pristinePanel = panel.querySelector('[data-contact-form]') ? panel.innerHTML : null;
+
+    const setError = (form, name, message) => {
+        const input = form.elements[name];
         if (!input) return;
 
         input.classList.toggle('border-danger', Boolean(message));
         input.classList.toggle('border-white/9', !message);
         input.setAttribute('aria-invalid', message ? 'true' : 'false');
 
-        const existing = input.parentElement.querySelector('[data-error]');
-        if (existing) existing.remove();
+        input.parentElement.querySelector('[data-error]')?.remove();
 
         if (message) {
             const p = document.createElement('p');
@@ -78,33 +80,7 @@ if (form) {
         }
     };
 
-    const validate = () => {
-        let firstInvalid = null;
-
-        fieldNames.forEach((name) => {
-            const input = fieldOf(name);
-            const message = input ? rules[name](input.value) : '';
-            setError(name, message);
-            if (message && !firstInvalid) firstInvalid = input;
-        });
-
-        return firstInvalid;
-    };
-
-    // Clear a field's error as soon as the visitor fixes it, but never
-    // show a new one while they are still typing their first attempt.
-    fieldNames.forEach((name) => {
-        const input = fieldOf(name);
-        if (!input) return;
-
-        input.addEventListener('input', () => {
-            if (input.getAttribute('aria-invalid') === 'true' && !rules[name](input.value)) {
-                setError(name, '');
-            }
-        });
-    });
-
-    const recaptchaToken = () => {
+    const recaptchaToken = (form) => {
         const siteKey = form.dataset.recaptchaKey;
         if (!siteKey || typeof grecaptcha === 'undefined') return Promise.resolve(null);
 
@@ -121,10 +97,7 @@ if (form) {
 
             try {
                 grecaptcha.ready(() => {
-                    grecaptcha
-                        .execute(siteKey, { action })
-                        .then(done)
-                        .catch(() => done(null));
+                    grecaptcha.execute(siteKey, { action }).then(done).catch(() => done(null));
                 });
             } catch {
                 done(null);
@@ -132,55 +105,107 @@ if (form) {
         });
     };
 
-    const busy = (state) => {
-        button.disabled = state;
-        button.textContent = state ? 'Sending…' : 'Send message';
+    const showForm = () => {
+        panel.innerHTML = pristinePanel;
+        bindForm();
+        panel.querySelector('[name="name"]')?.focus();
     };
 
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault();
+    const bindSendAnother = () => {
+        if (!pristinePanel) return;
 
-        formError.classList.add('hidden');
+        panel.querySelector('[data-send-another]')?.addEventListener('click', (event) => {
+            event.preventDefault();
+            showForm();
+        });
+    };
 
-        const firstInvalid = validate();
-        if (firstInvalid) {
-            firstInvalid.focus();
-            return;
-        }
+    function bindForm() {
+        const form = panel.querySelector('[data-contact-form]');
+        if (!form) return;
 
-        busy(true);
+        const formError = form.querySelector('[data-form-error]');
+        const button = form.querySelector('button[type="submit"]');
 
-        try {
-            const token = await recaptchaToken();
-            if (token) form.recaptcha_token.value = token;
+        const validate = () => {
+            let firstInvalid = null;
 
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: new FormData(form),
-                headers: { Accept: 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+            fieldNames.forEach((name) => {
+                const input = form.elements[name];
+                const message = input ? rules[name](input.value) : '';
+                setError(form, name, message);
+                if (message && !firstInvalid) firstInvalid = input;
             });
 
-            if (response.status === 422) {
-                const { errors = {} } = await response.json();
-                fieldNames.forEach((name) => setError(name, errors[name]?.[0] || ''));
-                fieldOf(Object.keys(errors)[0])?.focus();
+            return firstInvalid;
+        };
+
+        // Clear a field's error once it is corrected, but never raise a new
+        // one while the visitor is still typing their first attempt.
+        fieldNames.forEach((name) => {
+            const input = form.elements[name];
+
+            input?.addEventListener('input', () => {
+                if (input.getAttribute('aria-invalid') === 'true' && !rules[name](input.value)) {
+                    setError(form, name, '');
+                }
+            });
+        });
+
+        const busy = (state) => {
+            button.disabled = state;
+            button.textContent = state ? 'Sending…' : 'Send message';
+        };
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            formError.classList.add('hidden');
+
+            const firstInvalid = validate();
+            if (firstInvalid) {
+                firstInvalid.focus();
 
                 return;
             }
 
-            if (!response.ok) {
+            busy(true);
+
+            try {
+                const token = await recaptchaToken(form);
+                if (token) form.recaptcha_token.value = token;
+
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { Accept: 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+                });
+
+                if (response.status === 422) {
+                    const { errors = {} } = await response.json();
+                    fieldNames.forEach((name) => setError(form, name, errors[name]?.[0] || ''));
+                    form.elements[Object.keys(errors)[0]]?.focus();
+
+                    return;
+                }
+
+                if (!response.ok) {
+                    formError.classList.remove('hidden');
+
+                    return;
+                }
+
+                const { html } = await response.json();
+                panel.innerHTML = html;
+                bindSendAnother();
+                panel.querySelector('h3')?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+            } catch {
                 formError.classList.remove('hidden');
-
-                return;
+            } finally {
+                if (document.body.contains(button)) busy(false);
             }
+        });
+    }
 
-            const { html } = await response.json();
-            panel.innerHTML = html;
-            panel.querySelector('h3')?.scrollIntoView({ block: 'center', behavior: 'smooth' });
-        } catch {
-            formError.classList.remove('hidden');
-        } finally {
-            if (document.body.contains(button)) busy(false);
-        }
-    });
+    bindForm();
+    bindSendAnother();
 }
