@@ -48,7 +48,10 @@
 @endpush
 
 @section('content')
-    <div id="top" class="portfolio min-h-screen w-full overflow-x-hidden bg-bg font-sans text-ink antialiased">
+    {{-- overflow-x-clip (not -hidden) keeps stray decoration from causing
+         sideways scroll without making this a scroll container, which would
+         break the sticky nav. --}}
+    <div id="top" class="portfolio min-h-screen w-full overflow-x-clip bg-bg font-sans text-ink antialiased">
         <x-portfolio.nav />
         <main>
             {{-- variant: statement | split | editorial --}}
