@@ -14,26 +14,17 @@
             </p>
         </div>
 
+        {{-- JavaScript swaps this panel's contents on success; without
+             JavaScript the server re-renders the page and fills it. --}}
+        <div data-contact-panel>
         @if (session('contact.sent'))
-            <div class="flex flex-col items-start gap-[14px] rounded-[20px] border border-accent/25 bg-surface px-9 py-10">
-                <span class="grid h-13 w-13 place-items-center rounded-[14px] bg-accent/15 text-accent">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M20 6 9 17l-5-5" />
-                    </svg>
-                </span>
-                <h3 class="font-display text-[23px] font-semibold">Message sent</h3>
-                <p class="text-base leading-[1.6] text-soft">
-                    Thanks, {{ session('contact.sent') }} — I'll reply to you soon.
-                </p>
-                <a href="{{ route('home') }}#contact" class="mt-1.5 inline-block cursor-pointer rounded-[11px] border border-line-strong px-5 py-[11px] text-[14.5px] font-semibold text-ink hover:border-white/30">
-                    Send another
-                </a>
-            </div>
+            <x-portfolio.contact-sent :name="session('contact.sent')" />
         @else
             <form
                 method="POST"
                 action="{{ route('contact.send') }}"
                 novalidate
+                data-contact-form
                 class="flex flex-col gap-[18px]"
                 @if (config('services.recaptcha.site_key'))
                     data-recaptcha-key="{{ config('services.recaptcha.site_key') }}"
@@ -43,12 +34,14 @@
                 @csrf
                 <input type="hidden" name="recaptcha_token" value="">
 
-                @if (session('contact.failed'))
+                {{-- Filled server-side after a no-JS failure, and by script
+                     when a fetch submit cannot be delivered. --}}
+                <div data-form-error class="@if (! session('contact.failed')) hidden @endif">
                     <p class="rounded-xl border border-danger/40 bg-danger/10 px-4 py-3 text-[14.5px] leading-[1.6] text-danger">
                         Something went wrong sending your message. Please try again, or email me directly at
                         <a href="mailto:{{ config('portfolio.contact_email') }}" class="font-semibold underline">{{ config('portfolio.contact_email') }}</a>.
                     </p>
-                @endif
+                </div>
                 <div>
                     <label for="contact-name" class="mb-2 block text-[13.5px] font-semibold text-muted">Name</label>
                     <input
@@ -89,7 +82,7 @@
                         <p class="mt-[7px] text-[13px] text-danger">{{ $message }}</p>
                     @enderror
                 </div>
-                <button type="submit" class="cursor-pointer self-start rounded-[13px] bg-accent px-7 py-[15px] text-[15.5px] font-bold text-on-accent hover:bg-accent-bright">
+                <button type="submit" class="cursor-pointer self-start rounded-[13px] bg-accent px-7 py-[15px] text-[15.5px] font-bold text-on-accent hover:bg-accent-bright disabled:cursor-wait disabled:opacity-70">
                     Send message
                 </button>
                 @if (config('services.recaptcha.site_key'))
@@ -104,5 +97,6 @@
                 @endif
             </form>
         @endif
+        </div>
     </div>
 </section>

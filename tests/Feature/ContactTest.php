@@ -118,6 +118,42 @@ test('the message must be at least ten characters', function () {
     ]);
 });
 
+test('a fetch submit gets the success panel as json, not a redirect', function () {
+    Mail::fake();
+
+    $response = $this->postJson('/contact', [
+        'name' => 'Ana Torres',
+        'email' => 'ana@example.com',
+        'message' => 'I have a project I would like to discuss with you.',
+    ]);
+
+    $response->assertOk();
+    expect($response->json('html'))
+        ->toContain('Message sent')
+        ->toContain('Thanks, Ana');
+});
+
+test('a fetch submit gets validation errors as json', function () {
+    Mail::fake();
+
+    $this->postJson('/contact', ['name' => '', 'email' => 'nope', 'message' => 'short'])
+        ->assertStatus(422)
+        ->assertJsonValidationErrors(['name', 'email', 'message'])
+        ->assertJsonPath('errors.email.0', 'That doesn’t look like a valid email.');
+
+    Mail::assertNothingSent();
+});
+
+test('a fetch submit reports a delivery failure with a 502', function () {
+    Mail::shouldReceive('to->send')->andThrow(new RuntimeException('Postmark down'));
+
+    $this->postJson('/contact', [
+        'name' => 'Ana Torres',
+        'email' => 'ana@example.com',
+        'message' => 'I have a project I would like to discuss with you.',
+    ])->assertStatus(502);
+});
+
 test('validation errors redirect back to the contact section', function () {
     $response = $this->from('/')->post('/contact', []);
 

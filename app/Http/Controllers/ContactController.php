@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactRequest;
 use App\Mail\ContactMessage;
 use App\Services\Recaptcha;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -14,8 +15,11 @@ class ContactController extends Controller
 {
     /**
      * Handle a contact form submission.
+     *
+     * Answers JSON to the script-driven submit and a redirect to a plain
+     * form post, so the form keeps working with JavaScript disabled.
      */
-    public function send(ContactRequest $request, Recaptcha $recaptcha): RedirectResponse
+    public function send(ContactRequest $request, Recaptcha $recaptcha): RedirectResponse|JsonResponse
     {
         $assessment = $recaptcha->assess(
             $request->string('recaptcha_token')->toString(),
@@ -29,9 +33,16 @@ class ContactController extends Controller
                 'submission' => $request->validated(),
             ]);
 
-            return back()
-                ->withInput()
-                ->withErrors(['message' => 'Your message looked automated to our spam check. Please try again.']);
+            $error = 'Your message looked automated to our spam check. Please try again.';
+
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'message' => $error,
+                    'errors' => ['message' => [$error]],
+                ], 422);
+            }
+
+            return back()->withInput()->withErrors(['message' => $error]);
         }
 
         try {
@@ -49,12 +60,23 @@ class ContactController extends Controller
                 'submission' => $request->validated(),
             ]);
 
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Delivery failed'], 502);
+            }
+
             return redirect()->to('/#contact')
                 ->withInput()
                 ->with('contact.failed', true);
         }
 
-        return redirect()->to('/#contact')
-            ->with('contact.sent', $request->senderFirstName());
+        $firstName = $request->senderFirstName();
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'html' => view('components.portfolio.contact-sent', ['name' => $firstName])->render(),
+            ]);
+        }
+
+        return redirect()->to('/#contact')->with('contact.sent', $firstName);
     }
 }
