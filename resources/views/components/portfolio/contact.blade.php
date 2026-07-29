@@ -75,7 +75,7 @@
                         id="contact-message"
                         name="message"
                         rows="5"
-                        placeholder="Tell me about your project…"
+                        placeholder="What's on your mind?"
                         @class([$field, 'resize-y', 'border-danger' => $errors->has('message'), 'border-white/9' => ! $errors->has('message')])
                     >{{ old('message') }}</textarea>
                     @error('message')
