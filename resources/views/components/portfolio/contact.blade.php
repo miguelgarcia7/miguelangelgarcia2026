@@ -2,9 +2,10 @@
     <div class="pf-contact__inner">
         <div>
             <p class="pf-eyebrow">Contact</p>
-            <h2 class="pf-heading pf-contact__title">Let's build something together.</h2>
+            <h2 class="pf-heading pf-contact__title">Let's connect.</h2>
             <p class="pf-contact__copy">
-                Have a role, a team, or a project in mind? Send a note and I'll get back to you soon.
+                Whether it's a role, a question, or just to talk shop — send a note and I'll
+                get back to you soon.
             </p>
         </div>
 

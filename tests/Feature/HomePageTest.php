@@ -25,7 +25,7 @@ test('the home page content is visible without javascript', function () {
         ->assertSee('Claude Code')
         ->assertSee('CI/CD')
         ->assertSee('Languages &amp; Frameworks', escape: false)
-        ->assertSee("Let's build something together.", escape: false);
+        ->assertSee("Let's connect.", escape: false);
 });
 
 test('the home page includes person structured data', function () {
