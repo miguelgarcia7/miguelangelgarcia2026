@@ -1,10 +1,73 @@
 @import 'tailwindcss';
-@import './portfolio/portfolio.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
+/*
+| Design tokens
+|--------------------------------------------------------------------------
+| Exposed to Tailwind as utilities: --color-accent becomes bg-accent /
+| text-accent / border-accent, --font-display becomes font-display, etc.
+*/
 @theme {
     --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+
+    --color-bg: #0c0e11;
+    --color-surface: #13161a;
+    --color-surface-deep: #101317;
+    --color-slot: #15181d;
+
+    --color-ink: #f3f5f6;
+    --color-body: #b3b9c1;
+    --color-muted: #aeb4bd;
+    --color-soft: #9aa0a9;
+    --color-faint: #7f858e;
+
+    --color-accent: #2ee6a6;
+    --color-accent-bright: #5cf0bd;
+    --color-accent-deep: #12b47f;
+    --color-on-accent: #08221a;
+    --color-danger: #ff7a7a;
+
+    --color-line: rgb(255 255 255 / 0.07);
+    --color-line-strong: rgb(255 255 255 / 0.14);
+}
+
+::selection {
+    background: rgb(46 230 166 / 0.28);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+/*
+| Scroll reveal
+|--------------------------------------------------------------------------
+| `pf-motion` is added by resources/js/app.js, so with JavaScript disabled
+| these elements are never hidden in the first place.
+*/
+.pf-motion [data-reveal] {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+        opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.pf-motion [data-reveal].pf-revealed {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pf-motion [data-reveal] {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }

@@ -48,7 +48,7 @@
 @endpush
 
 @section('content')
-    <div id="top" class="portfolio">
+    <div id="top" class="portfolio min-h-screen w-full overflow-x-hidden bg-bg font-sans text-ink antialiased">
         <x-portfolio.nav />
         <main>
             {{-- variant: statement | split | editorial --}}

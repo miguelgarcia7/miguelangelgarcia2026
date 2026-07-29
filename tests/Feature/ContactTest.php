@@ -56,3 +56,13 @@ test('validation errors redirect back to the contact section', function () {
 
     $response->assertRedirect('/#contact');
 });
+
+test('invalid fields are marked in the rendered form', function () {
+    $this->from('/')->post('/contact', []);
+
+    $this->followingRedirects()
+        ->from('/')
+        ->post('/contact', [])
+        ->assertSee('border-danger', escape: false)
+        ->assertSee('Please enter your name.');
+});
