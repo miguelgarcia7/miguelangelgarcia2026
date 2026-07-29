@@ -32,6 +32,12 @@
         @else
             <form method="POST" action="{{ route('contact.send') }}" novalidate class="flex flex-col gap-[18px]">
                 @csrf
+                @if (session('contact.failed'))
+                    <p class="rounded-xl border border-danger/40 bg-danger/10 px-4 py-3 text-[14.5px] leading-[1.6] text-danger">
+                        Something went wrong sending your message. Please try again, or email me directly at
+                        <a href="mailto:{{ config('portfolio.contact_email') }}" class="font-semibold underline">{{ config('portfolio.contact_email') }}</a>.
+                    </p>
+                @endif
                 <div>
                     <label for="contact-name" class="mb-2 block text-[13.5px] font-semibold text-muted">Name</label>
                     <input

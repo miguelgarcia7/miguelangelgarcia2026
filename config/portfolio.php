@@ -19,6 +19,9 @@ return [
     'job_title' => 'Senior Full-Stack Engineer',
     'availability' => 'Available for new opportunities',
     'location' => 'Dallas–Fort Worth, TX',
+
+    // Where contact form submissions are delivered.
+    'contact_email' => env('CONTACT_TO_ADDRESS', env('MAIL_FROM_ADDRESS')),
     'description' => 'Miguel Angel Garcia is a senior full-stack engineer in Dallas–Fort Worth with 15+ years building websites and web applications, leading development teams, and shipping AI-powered products with Laravel, React, Vue, and the Claude and OpenAI APIs.',
     'same_as' => [
         'https://miguelangelgarcia.com',

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactRequest;
+use App\Mail\ContactMessage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Throwable;
 
 class ContactController extends Controller
 {
@@ -13,12 +16,26 @@ class ContactController extends Controller
      */
     public function send(ContactRequest $request): RedirectResponse
     {
-        // TODO: deliver the message (e.g. a Mailable to your inbox) once a
-        // mailer is configured. Logged for now so submissions aren't lost.
-        Log::info('Contact form submission', $request->validated());
+        try {
+            Mail::to(config('portfolio.contact_email'))->send(new ContactMessage(
+                senderName: $request->validated('name'),
+                senderEmail: $request->validated('email'),
+                body: $request->validated('message'),
+            ));
+        } catch (Throwable $e) {
+            // Log the submission itself so a delivery outage never loses a
+            // message, and tell the sender rather than pretending it sent.
+            Log::error('Contact form delivery failed', [
+                'exception' => $e->getMessage(),
+                'submission' => $request->validated(),
+            ]);
 
-        return redirect()
-            ->to('/#contact')
+            return redirect()->to('/#contact')
+                ->withInput()
+                ->with('contact.failed', true);
+        }
+
+        return redirect()->to('/#contact')
             ->with('contact.sent', $request->senderFirstName());
     }
 }

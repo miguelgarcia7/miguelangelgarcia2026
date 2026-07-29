@@ -1,6 +1,73 @@
 <?php
 
+use App\Mail\ContactMessage;
+use Illuminate\Support\Facades\Mail;
+
+test('a valid submission emails the site owner', function () {
+    Mail::fake();
+    config(['portfolio.contact_email' => 'owner@example.com']);
+
+    $this->from('/')->post('/contact', [
+        'name' => 'Ana Torres',
+        'email' => 'ana@example.com',
+        'message' => 'I have a project I would like to discuss with you.',
+    ]);
+
+    Mail::assertSent(ContactMessage::class, function (ContactMessage $mail) {
+        $envelope = $mail->envelope();
+
+        return $mail->hasTo('owner@example.com')
+            && $mail->senderName === 'Ana Torres'
+            && $mail->senderEmail === 'ana@example.com'
+            && $envelope->replyTo[0]->address === 'ana@example.com'
+            && str_contains($envelope->subject, 'Ana Torres');
+    });
+});
+
+test('the email renders the submission as html', function () {
+    $rendered = (new ContactMessage(
+        senderName: 'Ana Torres',
+        senderEmail: 'ana@example.com',
+        body: "First line.\nSecond line.",
+    ))->render();
+
+    expect($rendered)
+        ->toContain('Ana Torres')
+        ->toContain('mailto:ana@example.com')
+        ->toContain('First line.<br />')
+        ->toContain('New message from the contact form');
+});
+
+test('the email escapes html in the message body', function () {
+    $rendered = (new ContactMessage(
+        senderName: 'Ana Torres',
+        senderEmail: 'ana@example.com',
+        body: '<script>alert(1)</script>',
+    ))->render();
+
+    expect($rendered)
+        ->not->toContain('<script>alert(1)</script>')
+        ->toContain('&lt;script&gt;');
+});
+
+test('a delivery failure keeps the message and warns the sender', function () {
+    Mail::shouldReceive('to->send')->andThrow(new RuntimeException('Postmark down'));
+
+    $response = $this->from('/')->post('/contact', [
+        'name' => 'Ana Torres',
+        'email' => 'ana@example.com',
+        'message' => 'I have a project I would like to discuss with you.',
+    ]);
+
+    $response
+        ->assertRedirect('/#contact')
+        ->assertSessionHas('contact.failed', true)
+        ->assertSessionMissing('contact.sent');
+});
+
 test('a valid submission flashes a success message', function () {
+    Mail::fake();
+
     $response = $this->from('/')->post('/contact', [
         'name' => 'Ana Torres',
         'email' => 'ana@example.com',
