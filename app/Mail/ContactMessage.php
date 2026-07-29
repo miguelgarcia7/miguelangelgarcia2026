@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Services\RecaptchaAssessment;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
@@ -20,6 +21,7 @@ class ContactMessage extends Mailable
         public string $senderName,
         public string $senderEmail,
         public string $body,
+        public ?RecaptchaAssessment $assessment = null,
     ) {}
 
     /**

@@ -18,6 +18,21 @@ return [
         'key' => env('POSTMARK_API_KEY'),
     ],
 
+    /*
+    | reCAPTCHA v3 (classic). Scores run 0.0 (almost certainly a bot) to 1.0.
+    | Submissions are never dropped for failing to verify — see
+    | App\Services\Recaptcha — but set "block_below" to a score to start
+    | rejecting the worst offenders outright.
+    */
+    'recaptcha' => [
+        'site_key' => env('RECAPTCHA_SITE_KEY'),
+        'secret_key' => env('RECAPTCHA_SECRET_KEY'),
+        'suspicious_below' => (float) env('RECAPTCHA_SUSPICIOUS_BELOW', 0.5),
+        'block_below' => env('RECAPTCHA_BLOCK_BELOW') !== null
+            ? (float) env('RECAPTCHA_BLOCK_BELOW')
+            : null,
+    ],
+
     'resend' => [
         'key' => env('RESEND_API_KEY'),
     ],

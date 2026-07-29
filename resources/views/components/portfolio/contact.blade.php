@@ -30,8 +30,19 @@
                 </a>
             </div>
         @else
-            <form method="POST" action="{{ route('contact.send') }}" novalidate class="flex flex-col gap-[18px]">
+            <form
+                method="POST"
+                action="{{ route('contact.send') }}"
+                novalidate
+                class="flex flex-col gap-[18px]"
+                @if (config('services.recaptcha.site_key'))
+                    data-recaptcha-key="{{ config('services.recaptcha.site_key') }}"
+                    data-recaptcha-action="contact"
+                @endif
+            >
                 @csrf
+                <input type="hidden" name="recaptcha_token" value="">
+
                 @if (session('contact.failed'))
                     <p class="rounded-xl border border-danger/40 bg-danger/10 px-4 py-3 text-[14.5px] leading-[1.6] text-danger">
                         Something went wrong sending your message. Please try again, or email me directly at
@@ -81,6 +92,16 @@
                 <button type="submit" class="cursor-pointer self-start rounded-[13px] bg-accent px-7 py-[15px] text-[15.5px] font-bold text-on-accent hover:bg-accent-bright">
                     Send message
                 </button>
+                @if (config('services.recaptcha.site_key'))
+                    {{-- Required wording when the reCAPTCHA badge is hidden. --}}
+                    <p class="text-[12.5px] leading-[1.5] text-faint">
+                        Protected by reCAPTCHA — the Google
+                        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="underline hover:text-soft">Privacy Policy</a>
+                        and
+                        <a href="https://policies.google.com/terms" target="_blank" rel="noopener" class="underline hover:text-soft">Terms of Service</a>
+                        apply.
+                    </p>
+                @endif
             </form>
         @endif
     </div>

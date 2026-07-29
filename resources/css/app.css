@@ -39,6 +39,12 @@
     background: rgb(46 230 166 / 0.28);
 }
 
+/* The floating reCAPTCHA badge is hidden; the required attribution is
+   shown as text under the contact form instead. */
+.grecaptcha-badge {
+    visibility: hidden;
+}
+
 @media (prefers-reduced-motion: no-preference) {
     html {
         scroll-behavior: smooth;
