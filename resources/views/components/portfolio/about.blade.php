@@ -1,4 +1,4 @@
-<section id="about" data-reveal class="grid items-center gap-16 border-t border-line px-[7vw] py-24 max-[960px]:grid-cols-1 max-[960px]:gap-11 min-[961px]:grid-cols-[0.85fr_1.15fr]">
+<section id="about" data-reveal tabindex="-1" aria-labelledby="about-heading" class="grid items-center gap-16 border-t border-line px-[7vw] py-24 max-[960px]:grid-cols-1 max-[960px]:gap-11 min-[961px]:grid-cols-[0.85fr_1.15fr]">
     <div class="relative max-[960px]:max-w-[420px]">
         <div class="pointer-events-none absolute -inset-[14px] rounded-[32px] bg-[radial-gradient(circle_at_30%_20%,rgba(46,230,166,.22),transparent_60%)]"></div>
         <div class="relative aspect-square overflow-hidden rounded-[26px] border border-white/9">
@@ -7,7 +7,7 @@
     </div>
     <div>
         <p class="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-accent">About me</p>
-        <h2 class="mb-[15px] font-display text-[clamp(30px,3.6vw,44px)] font-bold leading-[1.1] tracking-[-0.03em]">
+        <h2 id="about-heading" class="mb-[15px] font-display text-[clamp(30px,3.6vw,44px)] font-bold leading-[1.1] tracking-[-0.03em]">
             The web has changed a lot in 15 years. So have I.
         </h2>
         <x-portfolio.quote author="Steve Jobs" class="mb-[26px]">Stay hungry, stay foolish.</x-portfolio.quote>

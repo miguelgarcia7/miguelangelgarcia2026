@@ -51,9 +51,17 @@
 | blue that all but disappears on this dark palette. :focus-visible keeps
 | it off mouse clicks.
 */
-:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+:where(a, button, input, textarea, select, summary, [tabindex]:not([tabindex='-1'])):focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 3px;
+}
+
+/* tabindex="-1" marks scroll targets — sections, #main, the sent heading.
+   They take focus so the next Tab continues from the right place, but
+   they are not controls, and ringing a whole section reads as a bug. */
+[tabindex='-1']:focus,
+[tabindex='-1']:focus-visible {
+    outline: none;
 }
 
 /* Lets a keyboard user jump the nav straight to the content. Off-screen

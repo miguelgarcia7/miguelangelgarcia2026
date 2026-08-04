@@ -1,7 +1,8 @@
-<section id="experience" data-reveal class="border-t border-line px-[7vw] py-24">
+<section id="experience" data-reveal tabindex="-1" aria-labelledby="experience-heading" class="border-t border-line px-[7vw] py-24">
     <x-portfolio.section-intro
         eyebrow="Career"
         title="Experience"
+        heading-id="experience-heading"
         lead="15+ years across agencies, product companies, and independent work — as an engineer, a lead, and a director."
     />
     <div class="mx-auto max-w-[760px]">

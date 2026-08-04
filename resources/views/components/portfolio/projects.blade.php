@@ -1,7 +1,8 @@
-<section id="projects" data-reveal class="border-t border-line px-[7vw] py-24">
+<section id="projects" data-reveal tabindex="-1" aria-labelledby="projects-heading" class="border-t border-line px-[7vw] py-24">
     <x-portfolio.section-intro
         eyebrow="Selected work"
         title="Projects"
+        heading-id="projects-heading"
         lead="A selection of products I've designed and built end-to-end — from interface to backend."
     >
         <x-portfolio.quote author="Steve Jobs">We hire people who want to make the best things in the world.</x-portfolio.quote>

@@ -1,7 +1,8 @@
-<section id="stack" data-reveal class="border-t border-line px-[7vw] py-24">
+<section id="stack" data-reveal tabindex="-1" aria-labelledby="stack-heading" class="border-t border-line px-[7vw] py-24">
     <x-portfolio.section-intro
         eyebrow="Toolbox"
         title="Skills & Tools"
+        heading-id="stack-heading"
         lead="The languages, infrastructure, and AI tooling I reach for to design, build and ship full-stack products."
     >
         <x-portfolio.quote author="Steve Jobs">To turn really interesting ideas and fledgling technologies into a company that can continue to innovate for years, it requires a lot of disciplines.</x-portfolio.quote>

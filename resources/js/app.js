@@ -29,6 +29,25 @@ if (root) {
 }
 
 /**
+ * In-page links move focus, not just the scroll position.
+ *
+ * Following "#projects" scrolls the page but browsers are inconsistent
+ * about moving keyboard focus, so the next Tab would carry on from the nav
+ * instead of entering the section. Each section carries tabindex="-1" for
+ * this; focusing it means the following Tab lands on the first control
+ * inside, and a screen reader announces the section by its heading.
+ */
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', () => {
+        const target = document.getElementById(link.getAttribute('href').slice(1));
+        if (!target) return;
+
+        // After the browser has handled the jump, so it is not undone.
+        window.requestAnimationFrame(() => target.focus({ preventScroll: true }));
+    });
+});
+
+/**
  * Contact form: validate inline, score with reCAPTCHA, submit without a
  * page load, and swap between the form and the sent confirmation in place.
  *
