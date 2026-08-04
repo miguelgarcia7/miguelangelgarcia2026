@@ -9,12 +9,19 @@
     </x-portfolio.section-intro>
     <div class="mx-auto grid max-w-[1920px] gap-7 max-[680px]:grid-cols-1 min-[681px]:grid-cols-2">
         @foreach (config('portfolio.projects') as $project)
-            <article class="flex flex-col overflow-hidden rounded-[20px] border border-line bg-surface">
+            @php($projectId = 'project-'.\Illuminate\Support\Str::slug($project['title']))
+            {{-- Each card is its own tab stop, named by its title so a
+                 screen reader announces which project it has landed on. --}}
+            <article
+                tabindex="0"
+                aria-labelledby="{{ $projectId }}-title"
+                class="flex flex-col overflow-hidden rounded-[20px] border border-line bg-surface"
+            >
                 <div class="relative aspect-16/11 overflow-hidden">
                     <x-portfolio.image-slot label="Project image" :src="$project['image']" :alt="$project['title']" />
                 </div>
                 <div class="px-[22px] pb-6 pt-[22px]">
-                    <h3 class="mb-[9px] font-display text-xl font-semibold tracking-[-0.02em]">{{ $project['title'] }}</h3>
+                    <h3 id="{{ $projectId }}-title" class="mb-[9px] font-display text-xl font-semibold tracking-[-0.02em]">{{ $project['title'] }}</h3>
                     <p class="mb-4 text-[14.5px] leading-[1.55] text-soft">{{ $project['description'] }}</p>
                     <div class="flex flex-wrap gap-2">
                         @foreach ($project['tags'] as $tag)
