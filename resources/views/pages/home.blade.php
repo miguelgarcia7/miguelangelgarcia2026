@@ -53,7 +53,7 @@
          break the sticky nav. --}}
     <div id="top" class="portfolio min-h-screen w-full overflow-x-clip bg-bg font-sans text-ink antialiased">
         <x-portfolio.nav />
-        <main>
+        <main id="main" tabindex="-1">
             {{-- variant: statement | split | editorial --}}
             <x-portfolio.hero variant="statement" />
             <x-portfolio.about />

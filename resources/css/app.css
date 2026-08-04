@@ -33,10 +33,47 @@
 
     --color-line: rgb(255 255 255 / 0.07);
     --color-line-strong: rgb(255 255 255 / 0.14);
+    /* Borders that convey a control's boundary (inputs) need 3:1 against
+       their background to meet WCAG 1.4.11; 0.34 alpha measures 3.1:1. */
+    --color-line-control: rgb(255 255 255 / 0.34);
 }
 
 ::selection {
     background: rgb(46 230 166 / 0.28);
+}
+
+/*
+| Focus
+|--------------------------------------------------------------------------
+| One visible indicator for everything keyboard-reachable. The accent
+| measures 11.9:1 against the page background, well past the 3:1 that
+| WCAG 1.4.11 asks of a focus indicator, and replaces the browser default
+| blue that all but disappears on this dark palette. :focus-visible keeps
+| it off mouse clicks.
+*/
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+/* Lets a keyboard user jump the nav straight to the content. Off-screen
+   until focused, then pinned to the top-left. */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    left: 12px;
+    top: 12px;
+    padding: 12px 18px;
+    border-radius: 10px;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    font-weight: 700;
+    text-decoration: none;
 }
 
 /* The floating reCAPTCHA badge is hidden; the required attribution is
@@ -65,7 +102,10 @@
         transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-.pf-motion [data-reveal].pf-revealed {
+.pf-motion [data-reveal].pf-revealed,
+/* Tabbing into a section that has not been revealed yet must not leave the
+   keyboard user staring at an invisible, focused control. */
+.pf-motion [data-reveal]:focus-within {
     opacity: 1;
     transform: none;
 }

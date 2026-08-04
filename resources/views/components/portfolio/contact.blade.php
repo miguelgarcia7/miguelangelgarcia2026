@@ -1,5 +1,7 @@
 @php
-    $field = 'w-full rounded-xl border bg-surface px-4 py-[14px] font-sans text-[15.5px] text-ink focus:outline-none';
+    // No focus:outline-none here — the global :focus-visible ring in
+    // app.css is what a keyboard user relies on to see where they are.
+    $field = 'w-full rounded-xl border bg-surface px-4 py-[14px] font-sans text-[15.5px] text-ink';
 @endphp
 
 <section id="contact" data-reveal class="border-t border-line px-[7vw] pb-[100px] pt-24">
@@ -49,10 +51,11 @@
                         name="name"
                         value="{{ old('name') }}"
                         placeholder="Your name"
-                        @class([$field, 'border-danger' => $errors->has('name'), 'border-white/9' => ! $errors->has('name')])
+                        @error('name') aria-invalid="true" aria-describedby="contact-name-error" @enderror
+                        @class([$field, 'border-danger' => $errors->has('name'), 'border-line-control' => ! $errors->has('name')])
                     >
                     @error('name')
-                        <p class="mt-[7px] text-[13px] text-danger">{{ $message }}</p>
+                        <p id="contact-name-error" data-error="name" class="mt-[7px] text-[13px] text-danger">{{ $message }}</p>
                     @enderror
                 </div>
                 <div>
@@ -63,10 +66,11 @@
                         name="email"
                         value="{{ old('email') }}"
                         placeholder="you@email.com"
-                        @class([$field, 'border-danger' => $errors->has('email'), 'border-white/9' => ! $errors->has('email')])
+                        @error('email') aria-invalid="true" aria-describedby="contact-email-error" @enderror
+                        @class([$field, 'border-danger' => $errors->has('email'), 'border-line-control' => ! $errors->has('email')])
                     >
                     @error('email')
-                        <p class="mt-[7px] text-[13px] text-danger">{{ $message }}</p>
+                        <p id="contact-email-error" data-error="email" class="mt-[7px] text-[13px] text-danger">{{ $message }}</p>
                     @enderror
                 </div>
                 <div>
@@ -76,10 +80,11 @@
                         name="message"
                         rows="5"
                         placeholder="What's on your mind?"
-                        @class([$field, 'resize-y', 'border-danger' => $errors->has('message'), 'border-white/9' => ! $errors->has('message')])
+                        @error('message') aria-invalid="true" aria-describedby="contact-message-error" @enderror
+                        @class([$field, 'resize-y', 'border-danger' => $errors->has('message'), 'border-line-control' => ! $errors->has('message')])
                     >{{ old('message') }}</textarea>
                     @error('message')
-                        <p class="mt-[7px] text-[13px] text-danger">{{ $message }}</p>
+                        <p id="contact-message-error" data-error="message" class="mt-[7px] text-[13px] text-danger">{{ $message }}</p>
                     @enderror
                 </div>
                 <button type="submit" class="cursor-pointer self-start rounded-[13px] bg-accent px-7 py-[15px] text-[15.5px] font-bold text-on-accent hover:bg-accent-bright disabled:cursor-wait disabled:opacity-70">

@@ -65,19 +65,30 @@ if (panel) {
         const input = form.elements[name];
         if (!input) return;
 
+        const errorId = `contact-${name}-error`;
+
         input.classList.toggle('border-danger', Boolean(message));
-        input.classList.toggle('border-white/9', !message);
+        input.classList.toggle('border-line-control', !message);
         input.setAttribute('aria-invalid', message ? 'true' : 'false');
 
         input.parentElement.querySelector('[data-error]')?.remove();
 
-        if (message) {
-            const p = document.createElement('p');
-            p.dataset.error = name;
-            p.className = 'mt-[7px] text-[13px] text-danger';
-            p.textContent = message;
-            input.parentElement.appendChild(p);
+        if (!message) {
+            input.removeAttribute('aria-describedby');
+
+            return;
         }
+
+        const p = document.createElement('p');
+        p.id = errorId;
+        p.dataset.error = name;
+        p.className = 'mt-[7px] text-[13px] text-danger';
+        p.textContent = message;
+        input.parentElement.appendChild(p);
+
+        // Point the field at its message so a screen reader reads the
+        // reason, not just "invalid", when focus lands here.
+        input.setAttribute('aria-describedby', errorId);
     };
 
     const recaptchaToken = (form) => {
@@ -197,7 +208,13 @@ if (panel) {
                 const { html } = await response.json();
                 panel.innerHTML = html;
                 bindSendAnother();
-                panel.querySelector('h3')?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+
+                // Move focus into the confirmation: the form the visitor was
+                // tabbing through no longer exists, so without this focus
+                // falls back to the top of the document.
+                const heading = panel.querySelector('h3');
+                heading?.focus({ preventScroll: true });
+                heading?.scrollIntoView({ block: 'center', behavior: 'smooth' });
             } catch {
                 formError.classList.remove('hidden');
             } finally {

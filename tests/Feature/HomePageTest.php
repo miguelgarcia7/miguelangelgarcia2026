@@ -52,6 +52,30 @@ test('social profiles are linked for people and for crawlers', function () {
     }
 });
 
+test('the page carries the accessibility scaffolding', function () {
+    $response = $this->get('/');
+
+    $response
+        ->assertSee('class="skip-link"', escape: false)   // 2.4.1 bypass blocks
+        ->assertSee('href="#main"', escape: false)
+        ->assertSee('<main id="main"', escape: false)
+        ->assertSee('<html lang="en"', escape: false)     // 3.1.1 language
+        ->assertSee('<nav', escape: false)                // 1.3.1 landmarks
+        ->assertSee('<footer', escape: false);
+
+    // 2.4.7: the focus indicator must never be suppressed on form fields.
+    expect($response->getContent())->not->toContain('focus:outline-none');
+});
+
+test('validation errors are wired to their field for screen readers', function () {
+    $this->from('/')->post('/contact', ['name' => '', 'email' => '', 'message' => '']);
+
+    $this->get('/')
+        ->assertSee('aria-invalid="true"', escape: false)                    // 4.1.2
+        ->assertSee('aria-describedby="contact-name-error"', escape: false)  // 3.3.1
+        ->assertSee('id="contact-name-error"', escape: false);
+});
+
 test('the home page includes seo meta tags', function () {
     $response = $this->get('/');
 

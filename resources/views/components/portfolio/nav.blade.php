@@ -4,11 +4,14 @@
         {{ config('portfolio.short_name') }}
     </a>
     <div class="flex items-center gap-[34px]">
-        <div class="hidden gap-[30px] text-[14.5px] font-medium text-muted min-[721px]:flex">
-            <a href="#about" class="hover:text-ink">About</a>
-            <a href="#experience" class="hover:text-ink">Experience</a>
-            <a href="#projects" class="hover:text-ink">Projects</a>
-            <a href="#stack" class="hover:text-ink">Stack</a>
+        {{-- py-1 keeps each link at least 24px tall, the WCAG 2.5.8
+             minimum target size; the negative margin keeps the visual
+             spacing identical to the design. --}}
+        <div class="-my-1 hidden gap-[30px] text-[14.5px] font-medium text-muted min-[721px]:flex">
+            <a href="#about" class="py-1 hover:text-ink">About</a>
+            <a href="#experience" class="py-1 hover:text-ink">Experience</a>
+            <a href="#projects" class="py-1 hover:text-ink">Projects</a>
+            <a href="#stack" class="py-1 hover:text-ink">Stack</a>
         </div>
         <a href="#contact" class="rounded-[11px] bg-accent px-5 py-[10px] text-[14.5px] font-bold text-on-accent hover:bg-accent-bright">
             Contact
