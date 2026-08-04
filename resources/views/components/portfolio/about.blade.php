@@ -1,4 +1,4 @@
-<section id="about" data-reveal tabindex="-1" aria-labelledby="about-heading" class="grid items-center gap-16 border-t border-line px-[7vw] py-24 max-[960px]:grid-cols-1 max-[960px]:gap-11 min-[961px]:grid-cols-[0.85fr_1.15fr]">
+<section id="about" data-reveal tabindex="0" aria-labelledby="about-heading" class="grid items-center gap-16 border-t border-line px-[7vw] py-24 max-[960px]:grid-cols-1 max-[960px]:gap-11 min-[961px]:grid-cols-[0.85fr_1.15fr]">
     <div class="relative max-[960px]:max-w-[420px]">
         <div class="pointer-events-none absolute -inset-[14px] rounded-[32px] bg-[radial-gradient(circle_at_30%_20%,rgba(46,230,166,.22),transparent_60%)]"></div>
         <div class="relative aspect-square overflow-hidden rounded-[26px] border border-white/9">

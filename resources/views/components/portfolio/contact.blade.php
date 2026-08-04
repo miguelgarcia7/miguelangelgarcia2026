@@ -4,7 +4,7 @@
     $field = 'w-full rounded-xl border bg-surface px-4 py-[14px] font-sans text-[15.5px] text-ink';
 @endphp
 
-<section id="contact" data-reveal tabindex="-1" aria-labelledby="contact-heading" class="border-t border-line px-[7vw] pb-[100px] pt-24">
+<section id="contact" data-reveal tabindex="0" aria-labelledby="contact-heading" class="border-t border-line px-[7vw] pb-[100px] pt-24">
     {{-- max-w matches the stack groups above so both sections align. --}}
     <div class="mx-auto grid max-w-[1040px] items-start gap-14 max-[900px]:grid-cols-1 max-[900px]:gap-10 min-[901px]:grid-cols-[0.9fr_1.1fr]">
         <div>

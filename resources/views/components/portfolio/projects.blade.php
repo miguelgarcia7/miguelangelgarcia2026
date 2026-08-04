@@ -1,4 +1,4 @@
-<section id="projects" data-reveal tabindex="-1" aria-labelledby="projects-heading" class="border-t border-line px-[7vw] py-24">
+<section id="projects" data-reveal tabindex="0" aria-labelledby="projects-heading" class="border-t border-line px-[7vw] py-24">
     <x-portfolio.section-intro
         eyebrow="Selected work"
         title="Projects"

@@ -1,4 +1,4 @@
-<section id="stack" data-reveal tabindex="-1" aria-labelledby="stack-heading" class="border-t border-line px-[7vw] py-24">
+<section id="stack" data-reveal tabindex="0" aria-labelledby="stack-heading" class="border-t border-line px-[7vw] py-24">
     <x-portfolio.section-intro
         eyebrow="Toolbox"
         title="Skills & Tools"

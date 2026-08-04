@@ -71,10 +71,10 @@ test('each section is a focusable landmark named by its heading', function () {
     $content = $this->get('/')->getContent();
 
     foreach (['about', 'experience', 'projects', 'stack', 'contact'] as $section) {
-        // tabindex="-1" lets an in-page link move focus here, so the next
-        // Tab continues inside the section rather than back in the nav.
+        // tabindex="0" puts the section in the tab sequence, so tabbing down
+        // the page stops at each one and announces it by its heading.
         expect($content)
-            ->toContain('id="'.$section.'" data-reveal tabindex="-1" aria-labelledby="'.$section.'-heading"')
+            ->toContain('id="'.$section.'" data-reveal tabindex="0" aria-labelledby="'.$section.'-heading"')
             ->toContain('id="'.$section.'-heading"');
     }
 });

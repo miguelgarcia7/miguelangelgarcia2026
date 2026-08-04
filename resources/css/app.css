@@ -56,9 +56,17 @@
     outline-offset: 3px;
 }
 
-/* tabindex="-1" marks scroll targets — sections, #main, the sent heading.
+/* Sections are tab stops, so they must show focus (2.4.7) — but drawn
+   inside their own box: these run the full width of the page, and a
+   positive offset would extend past the viewport and cause sideways
+   scrolling. */
+section[tabindex='0']:focus-visible {
+    outline-offset: -4px;
+}
+
+/* tabindex="-1" marks pure scroll targets — #main and the sent heading.
    They take focus so the next Tab continues from the right place, but
-   they are not controls, and ringing a whole section reads as a bug. */
+   they are not controls and are not in the tab order. */
 [tabindex='-1']:focus,
 [tabindex='-1']:focus-visible {
     outline: none;
