@@ -25,8 +25,15 @@ return [
     'description' => 'Miguel Angel Garcia is a senior full-stack engineer in Dallas–Fort Worth with 15+ years building websites and web applications, leading development teams, and shipping AI-powered products with Laravel, React, Vue, and the Claude and OpenAI APIs.',
     'same_as' => [
         'https://miguelangelgarcia.com',
-        // 'https://github.com/your-username',
-        // 'https://www.linkedin.com/in/your-username',
+        'https://github.com/miguelgarcia7',
+        'https://www.linkedin.com/in/miguelgarcia7',
+    ],
+
+    // Rendered as icon links in the footer. Kept separate from "same_as",
+    // which also carries profiles that have no icon.
+    'social' => [
+        ['name' => 'GitHub', 'url' => 'https://github.com/miguelgarcia7'],
+        ['name' => 'LinkedIn', 'url' => 'https://www.linkedin.com/in/miguelgarcia7'],
     ],
 
     /*

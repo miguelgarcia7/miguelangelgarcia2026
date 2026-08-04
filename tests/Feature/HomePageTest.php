@@ -38,6 +38,20 @@ test('the home page includes person structured data', function () {
         ->assertSee('"name":"Miguel Angel Garcia"', escape: false);
 });
 
+test('social profiles are linked for people and for crawlers', function () {
+    $response = $this->get('/');
+
+    // Visible links for recruiters…
+    $response
+        ->assertSee('https://github.com/miguelgarcia7', escape: false)
+        ->assertSee('https://www.linkedin.com/in/miguelgarcia7', escape: false);
+
+    // …and the sameAs graph that ties the profiles to this person.
+    foreach (config('portfolio.same_as') as $profile) {
+        $response->assertSee('"'.$profile.'"', escape: false);
+    }
+});
+
 test('the home page includes seo meta tags', function () {
     $response = $this->get('/');
 
