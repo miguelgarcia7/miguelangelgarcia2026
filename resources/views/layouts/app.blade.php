@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>@yield('title', config('portfolio.short_name'))</title>
         <meta name="description" content="@yield('description', config('portfolio.description'))">
@@ -28,6 +29,9 @@
         @fonts
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @if (config('ai.enabled') && request()->routeIs('home'))
+            @vite('resources/js/ask/main.tsx')
+        @endif
 
         @if (config('services.recaptcha.site_key'))
             <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}" async defer></script>

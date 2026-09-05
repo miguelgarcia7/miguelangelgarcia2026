@@ -1,0 +1,9 @@
+/*
+| Admin area only. The public site uses app.css; this file is loaded by
+| resources/views/layouts/admin.blade.php and never by the portfolio page.
+*/
+@import '@mantine/core/styles.css';
+
+body {
+    font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+}

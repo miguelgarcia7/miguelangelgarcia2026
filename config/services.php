@@ -18,6 +18,10 @@ return [
         'key' => env('POSTMARK_API_KEY'),
     ],
 
+    'anthropic' => [
+        'key' => env('ANTHROPIC_API_KEY'),
+    ],
+
     /*
     | reCAPTCHA v3 (classic). Scores run 0.0 (almost certainly a bot) to 1.0.
     | Submissions are never dropped for failing to verify — see

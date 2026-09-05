@@ -61,10 +61,16 @@ agency work.
 ## Site sections
 
 - [Home](https://miguelgarcia.site/): hero, about, experience, selected
-  projects, skills & tools, and a contact form
+  projects, skills & tools, an "Ask my AI assistant" section, and a contact
+  form
+- Ask: https://miguelgarcia.site/#ask — an assistant that answers questions
+  about Miguel's experience, projects, leadership, and skills using only
+  content he has written for it; it says so when something is not documented
 - Contact: via the form at https://miguelgarcia.site/#contact
 
 ## Technical notes
 
 This site is fully server-rendered (Laravel + Blade) — all content is
-available in the HTML without executing JavaScript.
+available in the HTML without executing JavaScript. The AI assistant is the
+one interactive component and requires JavaScript; everything it can say is
+also covered by the sections above.

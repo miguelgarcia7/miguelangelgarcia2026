@@ -12,6 +12,9 @@
             <a href="#experience" class="py-1 hover:text-ink">Experience</a>
             <a href="#projects" class="py-1 hover:text-ink">Projects</a>
             <a href="#stack" class="py-1 hover:text-ink">Stack</a>
+            @if (config('ai.enabled'))
+                <a href="#ask" class="py-1 hover:text-ink">Ask</a>
+            @endif
         </div>
         <a href="#contact" class="rounded-[11px] bg-accent px-5 py-[10px] text-[14.5px] font-bold text-on-accent hover:bg-accent-bright">
             Contact
