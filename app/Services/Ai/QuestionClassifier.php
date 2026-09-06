@@ -121,7 +121,7 @@ class QuestionClassifier
     private function systemPrompt(): string
     {
         $categories = collect(config('ai.categories'))
-            ->merge(AiKnowledgeEntry::query()->active()->distinct()->pluck('category'))
+            ->merge(AiKnowledgeEntry::query()->active()->pluck('categories')->flatten())
             ->unique()
             ->implode(', ');
 

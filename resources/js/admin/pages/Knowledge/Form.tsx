@@ -1,7 +1,6 @@
 import { Head, Link, router, useForm } from '@inertiajs/react';
 import {
     Anchor,
-    Autocomplete,
     Badge,
     Button,
     Code,
@@ -36,7 +35,7 @@ export default function Form({ entry, categories }: Props) {
     const form = useForm({
         title: entry?.title ?? '',
         slug: entry?.slug ?? '',
-        category: entry?.category ?? '',
+        categories: entry?.categories ?? ([] as string[]),
         kind: entry?.kind ?? 'general',
         summary: entry?.summary ?? '',
         content: entry?.content ?? '',
@@ -99,14 +98,16 @@ export default function Form({ entry, categories }: Props) {
                                     error={form.errors.title}
                                 />
                                 <Group grow align="flex-start">
-                                    <Autocomplete
-                                        label="Category"
-                                        description="Pick one or type a new one."
+                                    <TagsInput
+                                        label="Categories"
+                                        description="One to five topics. Pick from the list or type a new one and press Enter."
                                         required
                                         data={categories}
-                                        value={form.data.category}
-                                        onChange={(value) => form.setData('category', value)}
-                                        error={form.errors.category}
+                                        value={form.data.categories}
+                                        onChange={(value) => form.setData('categories', value)}
+                                        error={form.errors.categories}
+                                        maxTags={5}
+                                        clearable
                                     />
                                     <TextInput
                                         label="Slug"

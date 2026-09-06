@@ -97,7 +97,10 @@ class KeywordKnowledgeRetriever implements KnowledgeRetriever
     {
         $breakdown = [];
 
-        if (in_array(mb_strtolower($entry->category), $categories, true)) {
+        // Applied once however many of the entry's categories match, so
+        // listing many categories cannot inflate a score.
+        $entryCategories = array_map('mb_strtolower', $entry->categories ?? []);
+        if ($categories !== [] && array_intersect($entryCategories, $categories) !== []) {
             $breakdown['category'] = self::WEIGHT_CATEGORY;
         }
 

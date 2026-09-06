@@ -38,7 +38,7 @@ class AiKnowledgeController extends Controller
                         ->orWhere('tags', 'like', $like);
                 });
             })
-            ->when($filters['category'], fn ($query, string $category) => $query->where('category', $category))
+            ->when($filters['category'], fn ($query, string $category) => $query->whereJsonContains('categories', $category))
             ->when($filters['status'] === 'active', fn ($query) => $query->where('is_active', true))
             ->when($filters['status'] === 'inactive', fn ($query) => $query->where('is_active', false))
             ->when($filters['kind'], fn ($query, string $kind) => $query->where('kind', $kind))
@@ -50,7 +50,7 @@ class AiKnowledgeController extends Controller
                 'id' => $entry->id,
                 'title' => $entry->title,
                 'slug' => $entry->slug,
-                'category' => $entry->category,
+                'categories' => $entry->categories ?? [],
                 'kind' => $entry->kind,
                 'summary' => $entry->summary,
                 'tags' => $entry->tags ?? [],
@@ -183,7 +183,7 @@ class AiKnowledgeController extends Controller
             'id' => $entry->id,
             'title' => $entry->title,
             'slug' => $entry->slug,
-            'category' => $entry->category,
+            'categories' => $entry->categories ?? [],
             'kind' => $entry->kind,
             'summary' => $entry->summary ?? '',
             'content' => $entry->content ?? '',
@@ -206,7 +206,7 @@ class AiKnowledgeController extends Controller
     private function categories(): array
     {
         return collect(config('ai.categories'))
-            ->merge(AiKnowledgeEntry::query()->distinct()->orderBy('category')->pluck('category'))
+            ->merge(AiKnowledgeEntry::query()->pluck('categories')->flatten()->sort())
             ->unique()
             ->values()
             ->all();

@@ -63,8 +63,9 @@ return [
         'claude-opus-5' => ['input' => 5.00, 'output' => 25.00, 'cache_read' => 0.50],
     ],
 
-    // Suggested categories. The admin form accepts any category name, so
-    // this list only seeds the picker.
+    // Suggested categories. Entries carry up to five, and the admin form
+    // accepts any name, so this list only seeds the picker. STAR stories
+    // are a kind of entry, not a category: file them under their themes.
     'categories' => [
         'About Me',
         'Career',
@@ -72,7 +73,6 @@ return [
         'Projects',
         'Leadership',
         'Management',
-        'STAR Stories',
         'Accomplishments',
         'Product Thinking',
         'Development Philosophy',

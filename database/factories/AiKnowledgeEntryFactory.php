@@ -13,7 +13,7 @@ class AiKnowledgeEntryFactory extends Factory
     public function definition(): array
     {
         return [
-            'category' => 'Technical Skills',
+            'categories' => ['Technical Skills'],
             'kind' => AiKnowledgeEntry::KIND_GENERAL,
             'title' => $this->faker->unique()->sentence(4),
             'summary' => $this->faker->sentence(12),
@@ -27,7 +27,7 @@ class AiKnowledgeEntryFactory extends Factory
     public function star(): static
     {
         return $this->state(fn () => [
-            'category' => 'STAR Stories',
+            'categories' => ['Leadership'],
             'kind' => AiKnowledgeEntry::KIND_STAR,
             'content' => null,
             'situation' => $this->faker->paragraph(),

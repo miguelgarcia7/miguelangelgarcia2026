@@ -29,7 +29,7 @@ class AiKnowledgeEntry extends Model
     public const KINDS = [self::KIND_GENERAL, self::KIND_STAR];
 
     protected $fillable = [
-        'category',
+        'categories',
         'kind',
         'title',
         'slug',
@@ -47,6 +47,7 @@ class AiKnowledgeEntry extends Model
     protected function casts(): array
     {
         return [
+            'categories' => 'array',
             'tags' => 'array',
             'importance' => 'integer',
             'is_active' => 'boolean',
@@ -60,6 +61,7 @@ class AiKnowledgeEntry extends Model
                 $entry->slug = static::uniqueSlug($entry->title, $entry->id);
             }
 
+            $entry->categories = static::normaliseCategories($entry->categories ?? []);
             $entry->tags = static::normaliseTags($entry->tags ?? []);
         });
 
@@ -72,6 +74,14 @@ class AiKnowledgeEntry extends Model
     protected function active(Builder $query): void
     {
         $query->where('is_active', true);
+    }
+
+    /**
+     * The first category, used where only one can be shown.
+     */
+    public function primaryCategory(): ?string
+    {
+        return $this->categories[0] ?? null;
     }
 
     public function isStar(): bool
@@ -103,7 +113,7 @@ class AiKnowledgeEntry extends Model
     {
         return implode("\n", array_filter([
             $this->title,
-            $this->category,
+            implode(' ', $this->categories ?? []),
             implode(' ', $this->tags ?? []),
             $this->summary,
             $this->body(),
@@ -117,7 +127,7 @@ class AiKnowledgeEntry extends Model
     {
         $lines = [
             "### {$this->title}",
-            "Category: {$this->category}",
+            'Categories: '.implode(', ', $this->categories ?? []),
         ];
 
         if (filled($this->tags)) {
@@ -137,6 +147,23 @@ class AiKnowledgeEntry extends Model
     public static function forgetRetrievalCache(): void
     {
         Cache::forget(config('ai.retrieval.cache_key'));
+    }
+
+    /**
+     * Trimmed, de-duplicated (case-insensitively) category names in the
+     * order given, so "Leadership" and "leadership" never coexist.
+     *
+     * @param  array<int, string>  $categories
+     * @return array<int, string>
+     */
+    public static function normaliseCategories(array $categories): array
+    {
+        return collect($categories)
+            ->map(fn ($category) => trim(preg_replace('/\s+/', ' ', (string) $category)))
+            ->filter()
+            ->unique(fn (string $category) => mb_strtolower($category))
+            ->values()
+            ->all();
     }
 
     /**

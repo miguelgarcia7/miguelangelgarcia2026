@@ -46,7 +46,7 @@ Tests use Pest (converted from the skeleton's PHPUnit — keep new tests in Pest
 A RAG-style assistant grounded only in the knowledge base managed at `/admin/ai-knowledge`. Flow (all in `app/Services/Ai/`): `PortfolioAiService` → `QuestionClassifier` (Claude Haiku, JSON schema, validated) → `KnowledgeRetriever` (`KeywordKnowledgeRetriever`: category/tag/keyword scoring in PHP, cached active entries) → `PromptBuilder` → `LlmClient` (`AnthropicLlmClient`, the only provider-specific class) → streamed as server-sent events by `PortfolioAiController` on `POST /ask`. Every question is logged to `ai_question_logs` without visitor PII.
 
 - Settings, model ids, limits, pricing, categories and suggested questions: `config/ai.php`; the API key is `ANTHROPIC_API_KEY`.
-- Only `is_active` entries reach the model. An ABOUT_ME question with no matching entry returns the fixed "not documented" answer without a model call.
+- Entries carry one to five free-form `categories` (JSON) plus tags; STAR stories are `kind = star`, not a category. Only `is_active` entries reach the model. An ABOUT_ME question with no matching entry returns the fixed "not documented" answer without a model call.
 - `LlmClient` and `KnowledgeRetriever` are the swap points (an embedding retriever is the planned phase 2). Tests bind `Tests\Support\FakeLlmClient`; never call the real API from tests.
 - Frontend: `resources/js/ask/` (React island, Tailwind classes, no Mantine) mounted into `components/portfolio/ask.blade.php`, which renders the no-JS fallback. Admin pages: `resources/js/admin/pages/**` (Inertia page names map to that folder — see `config/inertia.php`).
 - Auth is a single owner account (`php artisan admin:create`); there is no registration.

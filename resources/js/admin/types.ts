@@ -2,7 +2,7 @@ export interface KnowledgeEntry {
     id: number;
     title: string;
     slug: string;
-    category: string;
+    categories: string[];
     kind: 'general' | 'star';
     summary: string;
     content: string;
@@ -18,7 +18,7 @@ export interface KnowledgeEntry {
 
 export type KnowledgeRow = Pick<
     KnowledgeEntry,
-    'id' | 'title' | 'slug' | 'category' | 'kind' | 'summary' | 'tags' | 'importance' | 'is_active' | 'updated_at'
+    'id' | 'title' | 'slug' | 'categories' | 'kind' | 'summary' | 'tags' | 'importance' | 'is_active' | 'updated_at'
 >;
 
 export interface Paginated<T> {

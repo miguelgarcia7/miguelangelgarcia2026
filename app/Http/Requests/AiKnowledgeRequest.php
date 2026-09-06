@@ -27,7 +27,8 @@ class AiKnowledgeRequest extends FormRequest
                 'nullable', 'string', 'max:180', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/',
                 Rule::unique('ai_knowledge_entries', 'slug')->ignore($entry),
             ],
-            'category' => ['required', 'string', 'max:80'],
+            'categories' => ['required', 'array', 'min:1', 'max:5'],
+            'categories.*' => ['string', 'max:80'],
             'kind' => ['required', Rule::in(AiKnowledgeEntry::KINDS)],
             'summary' => ['nullable', 'string', 'max:500'],
             'content' => [$isStar ? 'nullable' : 'required', 'string', 'max:20000'],
@@ -49,6 +50,9 @@ class AiKnowledgeRequest extends FormRequest
     {
         return [
             'slug.regex' => 'Use lower-case letters, numbers and hyphens only.',
+            'categories.required' => 'Pick at least one category.',
+            'categories.min' => 'Pick at least one category.',
+            'categories.max' => 'Use up to five categories.',
             'content.required' => 'Write the entry content, or switch to a STAR story.',
             'situation.required' => 'A STAR story needs a situation.',
             'task.required' => 'A STAR story needs a task.',
@@ -60,6 +64,7 @@ class AiKnowledgeRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
+            'categories' => AiKnowledgeEntry::normaliseCategories((array) $this->input('categories', [])),
             'tags' => AiKnowledgeEntry::normaliseTags((array) $this->input('tags', [])),
             'slug' => filled($this->input('slug')) ? trim($this->input('slug')) : null,
         ]);

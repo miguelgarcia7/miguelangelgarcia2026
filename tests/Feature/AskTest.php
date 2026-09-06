@@ -54,14 +54,14 @@ function classification(array $overrides = []): array
 test('a grounded question streams an answer built from matching entries', function () {
     $laravel = AiKnowledgeEntry::factory()->create([
         'title' => 'Laravel and PHP',
-        'category' => 'Technical Skills',
+        'categories' => ['Technical Skills'],
         'tags' => ['laravel', 'php'],
         'content' => 'Laravel powers QCP Staffing and Appointment Hub.',
         'importance' => 5,
     ]);
     AiKnowledgeEntry::factory()->create([
         'title' => 'Mentoring at UT Dallas',
-        'category' => 'Team Collaboration',
+        'categories' => ['Team Collaboration'],
         'tags' => ['mentorship'],
         'content' => 'Miguel mentors students.',
     ]);
@@ -113,7 +113,7 @@ test('an about-me question with no matching entries never reaches the answer mod
 });
 
 test('a category match alone is enough to give the model something to ground on', function () {
-    AiKnowledgeEntry::factory()->create(['title' => 'Infrastructure', 'category' => 'Technical Skills', 'tags' => ['aws'], 'content' => 'AWS and Docker.']);
+    AiKnowledgeEntry::factory()->create(['title' => 'Infrastructure', 'categories' => ['Technical Skills'], 'tags' => ['aws'], 'content' => 'AWS and Docker.']);
 
     $this->llm->queueJson(classification(['categories' => ['Technical Skills'], 'search_terms' => ['kubernetes']]))
         ->queue("I don't have documented information showing Kubernetes work, but his infrastructure entry lists AWS and Docker.");

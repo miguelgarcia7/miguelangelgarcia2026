@@ -123,7 +123,7 @@ export default function Index({ entries, filters, categories, stats }: Props) {
                         <Table.Thead>
                             <Table.Tr>
                                 <Table.Th>Entry</Table.Th>
-                                <Table.Th>Category</Table.Th>
+                                <Table.Th>Categories</Table.Th>
                                 <Table.Th>Tags</Table.Th>
                                 <Table.Th>Importance</Table.Th>
                                 <Table.Th>Active</Table.Th>
@@ -162,9 +162,13 @@ export default function Index({ entries, filters, categories, stats }: Props) {
                                         </Stack>
                                     </Table.Td>
                                     <Table.Td>
-                                        <Badge variant="outline" color="gray" size="sm">
-                                            {row.category}
-                                        </Badge>
+                                        <Group gap={4}>
+                                            {row.categories.map((category) => (
+                                                <Badge key={category} variant="outline" color="gray" size="sm">
+                                                    {category}
+                                                </Badge>
+                                            ))}
+                                        </Group>
                                     </Table.Td>
                                     <Table.Td>
                                         <Group gap={4}>

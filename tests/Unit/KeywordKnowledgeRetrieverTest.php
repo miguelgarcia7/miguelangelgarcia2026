@@ -15,13 +15,24 @@ function classify(array $terms = [], array $categories = [], ?string $standalone
 }
 
 test('tag and category matches outrank body-only matches', function () {
-    $body = AiKnowledgeEntry::factory()->create(['title' => 'Misc', 'tags' => [], 'category' => 'Career', 'content' => 'Once there was a deadline.']);
-    $tagged = AiKnowledgeEntry::factory()->create(['title' => 'Tight timeline', 'tags' => ['deadline'], 'category' => 'Career', 'content' => 'x']);
-    $categorised = AiKnowledgeEntry::factory()->create(['title' => 'Story', 'tags' => [], 'category' => 'STAR Stories', 'content' => 'nothing relevant']);
+    $body = AiKnowledgeEntry::factory()->create(['title' => 'Misc', 'tags' => [], 'categories' => ['Career'], 'content' => 'Once there was a deadline.']);
+    $tagged = AiKnowledgeEntry::factory()->create(['title' => 'Tight timeline', 'tags' => ['deadline'], 'categories' => ['Career'], 'content' => 'x']);
+    $categorised = AiKnowledgeEntry::factory()->create(['title' => 'Story', 'tags' => [], 'categories' => ['Leadership'], 'content' => 'nothing relevant']);
 
-    $hits = app(KeywordKnowledgeRetriever::class)->retrieve('Tell me about a difficult deadline', classify(['deadline'], ['STAR Stories']), 5);
+    $hits = app(KeywordKnowledgeRetriever::class)->retrieve('Tell me about a difficult deadline', classify(['deadline'], ['Leadership']), 5);
 
     expect($hits->map(fn ($h) => $h->entry->id)->all())->toBe([$categorised->id, $tagged->id, $body->id]);
+});
+
+test('the category boost applies once no matter how many categories match', function () {
+    $many = AiKnowledgeEntry::factory()->create(['title' => 'A', 'tags' => [], 'categories' => ['Leadership', 'Management', 'Career'], 'content' => 'x']);
+    $one = AiKnowledgeEntry::factory()->create(['title' => 'B', 'tags' => [], 'categories' => ['Leadership'], 'content' => 'x']);
+
+    $hits = app(KeywordKnowledgeRetriever::class)->retrieve('leadership?', classify([], ['Leadership', 'Management']), 5);
+
+    expect($hits)->toHaveCount(2)
+        ->and($hits[0]->score)->toBe($hits[1]->score)
+        ->and($hits->pluck('entry.id')->sort()->values()->all())->toBe([$many->id, $one->id]);
 });
 
 test('plural and inflected words still match', function () {

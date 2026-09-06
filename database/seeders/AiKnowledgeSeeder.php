@@ -34,7 +34,7 @@ class AiKnowledgeSeeder extends Seeder
             // ---------------------------------------------------------- About
             [
                 'slug' => 'who-miguel-is',
-                'category' => 'About Me',
+                'categories' => ['About Me'],
                 'title' => 'Who Miguel is',
                 'summary' => 'Senior full-stack engineer in Dallas–Fort Worth with 15+ years building web and mobile products, leading teams, and shipping AI-first software.',
                 'content' => <<<'TEXT'
@@ -51,7 +51,7 @@ class AiKnowledgeSeeder extends Seeder
             ],
             [
                 'slug' => 'what-miguel-is-looking-for',
-                'category' => 'Career Goals',
+                'categories' => ['Career Goals'],
                 'title' => 'What Miguel is looking for next',
                 'summary' => 'Available for new opportunities: senior engineering roles that combine hands-on development with technical leadership, architecture, mentorship, and product thinking.',
                 'content' => <<<'TEXT'
@@ -66,7 +66,7 @@ class AiKnowledgeSeeder extends Seeder
             ],
             [
                 'slug' => 'how-miguel-approaches-building-products',
-                'category' => 'Development Philosophy',
+                'categories' => ['Development Philosophy', 'Problem Solving'],
                 'title' => 'How Miguel approaches building products',
                 'summary' => 'Design-aware engineering with a focus on architecture, maintainability, accessibility, delivery, and how the team works together.',
                 'content' => <<<'TEXT'
@@ -81,7 +81,7 @@ class AiKnowledgeSeeder extends Seeder
             ],
             [
                 'slug' => 'mentoring-at-ut-dallas',
-                'category' => 'Team Collaboration',
+                'categories' => ['Team Collaboration', 'Leadership'],
                 'title' => 'Mentoring aspiring developers through UT Dallas',
                 'summary' => 'Miguel mentors students through a coding mentorship program at UT Dallas.',
                 'content' => <<<'TEXT'
@@ -94,7 +94,7 @@ class AiKnowledgeSeeder extends Seeder
             // --------------------------------------------------------- Career
             [
                 'slug' => 'career-timeline',
-                'category' => 'Career',
+                'categories' => ['Career'],
                 'title' => 'Career timeline',
                 'summary' => 'Overview of Miguel\'s roles from 2008 to today: A.M. Design, Ivie, RealPage, Jonah Digital, plus independent AI-first product work.',
                 'content' => <<<'TEXT'
@@ -109,7 +109,7 @@ class AiKnowledgeSeeder extends Seeder
             ],
             [
                 'slug' => 'jonah-digital-senior-software-developer',
-                'category' => 'Career',
+                'categories' => ['Career'],
                 'title' => 'Senior Software Developer at Jonah Digital (2024 — present)',
                 'summary' => 'Builds and maintains the products behind Jonah\'s apartment marketing platform for the multifamily industry, working full-stack with an AI-assisted workflow.',
                 'content' => <<<'TEXT'
@@ -122,7 +122,7 @@ class AiKnowledgeSeeder extends Seeder
             ],
             [
                 'slug' => 'realpage-director-of-web-development',
-                'category' => 'Leadership',
+                'categories' => ['Leadership', 'Management', 'Career'],
                 'title' => 'Director of Web Development at RealPage (2015 — 2024)',
                 'summary' => 'Nine years leading a development team at RealPage: marketing websites, CRM and CMS platforms, a shared design library, and tools that cut costs and improved efficiency.',
                 'content' => <<<'TEXT'
@@ -140,7 +140,7 @@ class AiKnowledgeSeeder extends Seeder
             ],
             [
                 'slug' => 'ivie-web-developer',
-                'category' => 'Career',
+                'categories' => ['Career'],
                 'title' => 'Web Developer at Ivie (2013 — 2015)',
                 'summary' => 'Digital media, marketing landing pages, and custom CMS work at the agency Ivie, including the Fresh Thyme CMS application.',
                 'content' => <<<'TEXT'
@@ -151,7 +151,7 @@ class AiKnowledgeSeeder extends Seeder
             ],
             [
                 'slug' => 'am-design-lead-web-developer',
-                'category' => 'Career',
+                'categories' => ['Career'],
                 'title' => 'Lead Web Developer at A.M. Design (2008 — 2013)',
                 'summary' => 'Miguel\'s first lead role: websites, mobile sites, and apps for clients such as Commscope, Watermark Church, and Red Rocks Church.',
                 'content' => <<<'TEXT'
@@ -164,7 +164,7 @@ class AiKnowledgeSeeder extends Seeder
             ],
             [
                 'slug' => 'brands-miguel-has-built-for',
-                'category' => 'Career',
+                'categories' => ['Career'],
                 'title' => 'Brands Miguel has built for',
                 'summary' => 'AT&T, Harley-Davidson, Travel Channel, Sonic, Cricket Wireless, RealPage, Twin Peaks, Which Wich, Fresh Thyme, and Stagen — directly or through agency work.',
                 'content' => <<<'TEXT'
@@ -177,7 +177,7 @@ class AiKnowledgeSeeder extends Seeder
             // ------------------------------------------------------- Projects
             [
                 'slug' => 'project-qcp-staffing-minute',
-                'category' => 'Projects',
+                'categories' => ['Projects'],
                 'title' => 'QCP Staffing / Minute',
                 'summary' => 'A staffing platform that manages the full staffing workflow end to end — one of two major applications Miguel built AI-first over the last two years.',
                 'content' => <<<'TEXT'
@@ -190,7 +190,7 @@ class AiKnowledgeSeeder extends Seeder
             ],
             [
                 'slug' => 'project-appointment-hub',
-                'category' => 'Projects',
+                'categories' => ['Projects'],
                 'title' => 'Appointment Hub',
                 'summary' => 'An appointment scheduling platform that streamlines booking for businesses and their clients, developed with an AI-first workflow.',
                 'content' => <<<'TEXT'
@@ -203,7 +203,7 @@ class AiKnowledgeSeeder extends Seeder
             ],
             [
                 'slug' => 'project-surenut',
-                'category' => 'Projects',
+                'categories' => ['Projects'],
                 'title' => 'SureNut marketing site and dashboard',
                 'summary' => 'Product marketing site for SureNut®, the first reusable prevailing torque wheel fastener, plus the back-end dashboard that runs it.',
                 'content' => <<<'TEXT'
@@ -216,7 +216,7 @@ class AiKnowledgeSeeder extends Seeder
             ],
             [
                 'slug' => 'project-realpage-marketing-site',
-                'category' => 'Projects',
+                'categories' => ['Projects'],
                 'title' => 'RealPage corporate marketing site and CMS',
                 'summary' => 'The corporate marketing site for RealPage (2024) and the CMS platform behind it, built and evolved with the team Miguel led.',
                 'content' => <<<'TEXT'
@@ -227,7 +227,7 @@ class AiKnowledgeSeeder extends Seeder
             ],
             [
                 'slug' => 'project-propertyware',
-                'category' => 'Projects',
+                'categories' => ['Projects'],
                 'title' => 'Propertyware marketing site',
                 'summary' => 'Marketing site for Propertyware (2019), RealPage\'s single-family property management platform, designed and shipped with Miguel\'s team.',
                 'content' => <<<'TEXT'
@@ -240,7 +240,7 @@ class AiKnowledgeSeeder extends Seeder
             // ----------------------------------------------- Technical skills
             [
                 'slug' => 'laravel-and-php',
-                'category' => 'Technical Skills',
+                'categories' => ['Technical Skills'],
                 'title' => 'Laravel and PHP',
                 'summary' => 'Laravel is Miguel\'s primary back-end framework: it powers QCP Staffing / Minute, Appointment Hub, SureNut, the RealPage and Propertyware marketing sites, and his own portfolio.',
                 'content' => <<<'TEXT'
@@ -253,7 +253,7 @@ class AiKnowledgeSeeder extends Seeder
             ],
             [
                 'slug' => 'languages-and-frameworks',
-                'category' => 'Technical Skills',
+                'categories' => ['Technical Skills'],
                 'title' => 'Languages and frameworks',
                 'summary' => 'HTML, CSS, JavaScript, TypeScript, React, Vue, PHP, Laravel, and Tailwind CSS.',
                 'content' => <<<'TEXT'
@@ -264,7 +264,7 @@ class AiKnowledgeSeeder extends Seeder
             ],
             [
                 'slug' => 'infrastructure-and-delivery',
-                'category' => 'Technical Skills',
+                'categories' => ['Technical Skills'],
                 'title' => 'Infrastructure, databases, and delivery',
                 'summary' => 'MySQL, Redis, AWS, DigitalOcean, CI/CD, Git, Docker, Laravel Forge, and automated testing with Pest/PHPUnit.',
                 'content' => <<<'TEXT'
@@ -275,7 +275,7 @@ class AiKnowledgeSeeder extends Seeder
             ],
             [
                 'slug' => 'ai-first-development-workflow',
-                'category' => 'Technical Skills',
+                'categories' => ['Technical Skills', 'Development Philosophy'],
                 'title' => 'AI-first development workflow',
                 'summary' => 'Two-plus years of daily AI-assisted development with Claude Code, the Anthropic Claude API, and the OpenAI API; two production applications built end to end this way.',
                 'content' => <<<'TEXT'
@@ -290,7 +290,7 @@ class AiKnowledgeSeeder extends Seeder
             // ------------------------------------------------ Accomplishments
             [
                 'slug' => 'realpage-efficiency-and-cost-results',
-                'category' => 'Accomplishments',
+                'categories' => ['Accomplishments', 'Leadership'],
                 'title' => 'Measurable results at RealPage',
                 'summary' => 'Marketing tools that improved efficiency 70% and cut costs 60%; a design library that improved maintainability 40%; an API system that enabled cross-team collaboration.',
                 'content' => <<<'TEXT'
@@ -301,9 +301,10 @@ class AiKnowledgeSeeder extends Seeder
             ],
 
             // ------------------------------------------ STAR story template
+            // Stories are kind "star"; their categories are the themes they show.
             [
                 'slug' => 'example-star-story-template',
-                'category' => 'STAR Stories',
+                'categories' => ['Leadership', 'Problem Solving'],
                 'kind' => AiKnowledgeEntry::KIND_STAR,
                 'title' => 'Example STAR story (template — replace me)',
                 'summary' => 'A placeholder showing the STAR format. Inactive, so the assistant never sees it. Replace it with a real story or delete it.',
