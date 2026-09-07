@@ -181,3 +181,14 @@ test('the question log page renders', function () {
             ->has('logs.data', 1)
             ->where('stats.unanswered', 1));
 });
+
+test('an expired session sends an Inertia request to the login page with a full page load', function () {
+    // A plain browser request still gets the ordinary redirect.
+    $this->get('/admin/ai-knowledge')->assertRedirect('/admin/login');
+
+    // An Inertia (XHR) request gets Inertia's location response instead of
+    // a redirect, so the client navigates rather than opening its modal.
+    $this->get('/admin/ai-knowledge', ['X-Inertia' => 'true', 'X-Requested-With' => 'XMLHttpRequest'])
+        ->assertStatus(409)
+        ->assertHeader('X-Inertia-Location', route('admin.login'));
+});
