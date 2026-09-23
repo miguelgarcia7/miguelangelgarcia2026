@@ -72,6 +72,14 @@ section[tabindex='0']:focus-visible {
     outline: none;
 }
 
+/* The assistant's composer shows focus on its wrapper instead (see
+   resources/js/ask/AskAssistant.tsx), so the textarea inside must not draw
+   the ring as well. This has to live here, unlayered: Tailwind utilities
+   sit in a cascade layer and can never override the rule above. */
+[data-ask-root] textarea:focus-visible {
+    outline: none;
+}
+
 /* Lets a keyboard user jump the nav straight to the content. Off-screen
    until focused, then pinned to the top-left. */
 .skip-link {

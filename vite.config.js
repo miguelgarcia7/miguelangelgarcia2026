@@ -2,11 +2,21 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import { bunny } from 'laravel-vite-plugin/fonts';
 import tailwindcss from '@tailwindcss/vite';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            input: [
+                // Public site: Blade + Tailwind + a little vanilla JS.
+                'resources/css/app.css',
+                'resources/js/app.js',
+                // "Ask about me": one React island mounted into the Blade page.
+                'resources/js/ask/main.tsx',
+                // Admin: Inertia + React + Mantine, client-rendered only.
+                'resources/css/admin.css',
+                'resources/js/admin/app.tsx',
+            ],
             refresh: true,
             fonts: [
                 bunny('Space Grotesk', {
@@ -17,6 +27,7 @@ export default defineConfig({
                 }),
             ],
         }),
+        react(),
         tailwindcss(),
     ],
     server: {
