@@ -1,8 +1,9 @@
 # Miguel Angel Garcia — Senior Full-Stack Engineer
 
-> Personal portfolio of Miguel Angel Garcia, a senior full-stack engineer in
-> Dallas–Fort Worth, TX with 15+ years building websites and web applications,
-> leading development teams, and shipping AI-powered products.
+> Personal portfolio of Miguel Angel Garcia, a Senior Full-Stack Engineer in
+> Dallas–Fort Worth, TX specializing in AI-driven development and LLM
+> integrations. He architects, builds and ships reliable web applications and
+> leads the development teams that deliver them.
 
 ## About
 

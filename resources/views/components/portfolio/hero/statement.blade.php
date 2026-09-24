@@ -7,13 +7,14 @@
             {{ config('portfolio.availability') }}
         </span>
         <h1 class="mb-[26px] font-display text-[clamp(42px,6.6vw,86px)] font-bold leading-[1.02] tracking-[-0.035em]">
-            Building beautiful<br>
-            web &amp; mobile <span class="text-accent">experiences</span>
+            Thoughtful software,<br>
+            <span class="text-accent">engineered</span> <span class="whitespace-nowrap">end to end.</span>
         </h1>
-        <p class="mx-auto mb-10 max-w-[600px] text-[19px] leading-[1.6] text-muted">
-            I'm {{ config('portfolio.name') }} — a senior full-stack engineer who's spent
-            15+ years turning ideas into fast, polished products. I've led teams, and for
-            the past two years I've built AI-first every day.
+        <p class="mx-auto mb-10 max-w-[640px] text-[19px] leading-[1.6] text-muted">
+            I'm {{ config('portfolio.name') }}, a {{ config('portfolio.job_title') }} specializing in
+            <span class="whitespace-nowrap">AI-driven</span> development and LLM integrations. I architect, build and ship reliable,
+            maintainable products, working closely with designers to get the details right,
+            and I lead the teams that make them happen. Ask my assistant below anything about my work.
         </p>
         @if (config('ai.enabled'))
             <x-portfolio.ask />

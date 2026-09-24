@@ -12,7 +12,7 @@ test('the home page content is visible without javascript', function () {
     $response
         ->assertSee('Miguel Angel Garcia')
         ->assertSee('Senior Full-Stack Engineer')
-        ->assertSee('Building beautiful')
+        ->assertSee('Thoughtful software')
         ->assertSee('About me')
         ->assertSee('Experience')
         ->assertSee('Director of Web Development')

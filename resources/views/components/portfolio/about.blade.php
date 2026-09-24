@@ -8,7 +8,7 @@
     <div>
         <p class="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-accent">About me</p>
         <h2 id="about-heading" class="mb-[15px] font-display text-[clamp(30px,3.6vw,44px)] font-bold leading-[1.1] tracking-[-0.03em]">
-            The web has changed a lot in 15 years. So have I.
+            I care how it's built, and how it feels.
         </h2>
         <x-portfolio.quote author="Steve Jobs" class="mb-[26px]">Stay hungry, stay foolish.</x-portfolio.quote>
         <p class="mb-[18px] text-[17px] leading-[1.72] text-body">
