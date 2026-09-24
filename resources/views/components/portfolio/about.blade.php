@@ -12,48 +12,30 @@
         </h2>
         <x-portfolio.quote author="Steve Jobs" class="mb-[26px]">Stay hungry, stay foolish.</x-portfolio.quote>
         <p class="mb-[18px] text-[17px] leading-[1.72] text-body">
-            I'm a full-stack engineer with more than 15 years of experience building thoughtful,
-            reliable digital products for web and mobile users. My career has evolved from
-            designing and developing websites to architecting complex web applications, leading
-            technical initiatives, and collaborating with engineers, designers, and business
-            stakeholders to turn ideas into scalable solutions.
+            My career has grown from building websites to architecting complex web applications
+            and leading the teams behind them. Along the way I've partnered closely with designers,
+            engineers, and business stakeholders to turn ideas into products that scale.
         </p>
         <p class="mb-[18px] text-[17px] leading-[1.72] text-body">
-            I bring a strong appreciation for interface design and user experience, along with a
-            deep focus on architecture, maintainability, accessibility, and delivery. I care not
-            only about what a team builds, but also how it collaborates, makes decisions, and
-            consistently ships high-quality work. I have also mentored aspiring developers through
-            a coding mentorship program at UT Dallas.
+            I focus on architecture, maintainability, accessibility, and steady delivery, with a
+            sharp eye for good interface design and user experience. I care just as much about how
+            a team works: how it collaborates, makes decisions, and ships quality work. I also
+            mentor aspiring developers through a coding mentorship program at UT Dallas.
         </p>
         <p class="mb-[18px] text-[17px] leading-[1.72] text-body">
-            I'm interested in senior engineering opportunities where I can combine hands-on
-            development with technical leadership, architecture, mentorship, and product thinking.
-            That may take the form of an engineering leadership position or a senior individual
-            contributor role, depending on the team and the problems being solved.
+            AI is part of how I work every day. I use Claude Code and build directly on the
+            Anthropic and OpenAI APIs to move faster through research, prototyping, and
+            implementation, holding that code to the same review and testing standards as any
+            other. My two most recent applications, QCP Staffing / Minute and Appointment Hub,
+            were built this way.
         </p>
         <p class="mb-7 text-[17px] leading-[1.72] text-body">
-            Over the past two years, AI-assisted development has become an important part of my
-            day-to-day workflow. I use tools such as Claude Code and work directly with the
-            Anthropic and OpenAI APIs to accelerate research, prototyping, implementation, and
-            refinement. My two most recent applications, QCP Staffing / Minute and Appointment
-            Hub, were developed end to end using this AI-enabled approach.
+            I'm looking for a senior role that combines hands-on engineering with technical
+            leadership, architecture, and mentorship, whether as an engineering lead or a senior
+            individual contributor.
         </p>
         <p class="font-display text-[19px] font-semibold text-ink">
             Never. Stop. <span class="text-accent">Learning.</span>
         </p>
-        <div class="mt-9 flex flex-wrap gap-11">
-            <div>
-                <div class="font-display text-[34px] font-bold text-accent">15+</div>
-                <div class="mt-0.5 text-sm text-soft">Years experience</div>
-            </div>
-            <div>
-                <div class="font-display text-[34px] font-bold text-accent">2+</div>
-                <div class="mt-0.5 text-sm text-soft">Years of AI-first development</div>
-            </div>
-            <div>
-                <div class="font-display text-[34px] font-bold text-accent">∞</div>
-                <div class="mt-0.5 text-sm text-soft">Always learning</div>
-            </div>
-        </div>
     </div>
 </section>
