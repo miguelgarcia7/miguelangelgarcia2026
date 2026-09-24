@@ -60,8 +60,8 @@ agency work.
 
 ## Site sections
 
-- [Home](https://miguelgarcia.site/): hero, about, experience, selected
-  projects, skills & tools, an "Ask my AI assistant" section, and a contact
+- [Home](https://miguelgarcia.site/): hero with an "Ask my AI assistant"
+  prompt, about, experience, selected projects, skills & tools, and a contact
   form
 - Ask: https://miguelgarcia.site/#ask — an assistant that answers questions
   about Miguel's experience, projects, leadership, and skills using only

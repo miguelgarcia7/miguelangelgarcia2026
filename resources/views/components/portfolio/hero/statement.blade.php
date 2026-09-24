@@ -15,6 +15,10 @@
             15+ years turning ideas into fast, polished products. I've led teams, and for
             the past two years I've built AI-first every day.
         </p>
-        <x-portfolio.hero.actions center />
+        @if (config('ai.enabled'))
+            <x-portfolio.ask />
+        @else
+            <x-portfolio.hero.actions center />
+        @endif
     </div>
 </header>
