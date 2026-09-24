@@ -34,8 +34,8 @@
             leadership, architecture, and mentorship, whether as an engineering lead or a senior
             individual contributor.
         </p>
-        <p class="font-display text-[19px] font-semibold text-ink">
-            Never. Stop. <span class="text-accent">Learning.</span>
+        <p class="mt-9 font-display text-[clamp(30px,3.4vw,42px)] font-bold leading-[1.1] tracking-[-0.03em] text-ink">
+            Never Stop <span class="text-accent">Learning</span>
         </p>
     </div>
 </section>
