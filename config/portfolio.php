@@ -22,7 +22,7 @@ return [
 
     // Where contact form submissions are delivered.
     'contact_email' => env('CONTACT_TO_ADDRESS', env('MAIL_FROM_ADDRESS')),
-    'description' => 'Miguel Angel Garcia is a senior full-stack engineer in Dallas–Fort Worth with 15+ years building websites and web applications, leading development teams, and shipping AI-powered products with Laravel, React, Vue, and the Claude and OpenAI APIs.',
+    'description' => 'Miguel Angel Garcia is a Senior Full-Stack Engineer in Dallas–Fort Worth specializing in AI-driven development and LLM integrations. He architects, builds and ships reliable web applications with Laravel, React, Vue, and the Claude and OpenAI APIs, and leads the development teams that deliver them.',
     'same_as' => [
         'https://miguelangelgarcia.com',
         'https://github.com/miguelgarcia7',

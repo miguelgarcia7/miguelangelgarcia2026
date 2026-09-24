@@ -242,11 +242,18 @@ test('the assistant can be switched off', function () {
     $this->get('/')->assertOk()->assertDontSee('Ask my AI assistant');
 });
 
-test('the home page renders the assistant section with its suggested questions', function () {
+test('the home page renders the assistant in the hero with its suggested questions', function () {
     $this->get('/')
         ->assertOk()
         ->assertSee('Ask my AI assistant')
+        ->assertSee('id="ask"', escape: false)
         ->assertSee('data-ask-root', escape: false)
         ->assertSee('What project are you most proud of?')
-        ->assertSee('href="#ask"', escape: false);
+        ->assertDontSee('View my work');
+});
+
+test('the hero keeps its call-to-action buttons when the assistant is off', function () {
+    config(['ai.enabled' => false]);
+
+    $this->get('/')->assertOk()->assertSee('View my work')->assertSee('Get in touch');
 });

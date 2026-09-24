@@ -3,7 +3,7 @@ import { AskAssistant } from './AskAssistant';
 import type { AskConfig } from './types';
 
 /**
- * Mounts the assistant into the Blade-rendered #ask section. The server
+ * Mounts the assistant into the Blade-rendered #ask block in the hero. The server
  * renders a static fallback in the same element, so the page reads fine
  * before this runs and when JavaScript is off.
  */

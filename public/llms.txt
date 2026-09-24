@@ -1,8 +1,9 @@
 # Miguel Angel Garcia — Senior Full-Stack Engineer
 
-> Personal portfolio of Miguel Angel Garcia, a senior full-stack engineer in
-> Dallas–Fort Worth, TX with 15+ years building websites and web applications,
-> leading development teams, and shipping AI-powered products.
+> Personal portfolio of Miguel Angel Garcia, a Senior Full-Stack Engineer in
+> Dallas–Fort Worth, TX specializing in AI-driven development and LLM
+> integrations. He architects, builds and ships reliable web applications and
+> leads the development teams that deliver them.
 
 ## About
 
@@ -19,7 +20,7 @@
   UT Dallas
 - Currently: available for new opportunities; seeking a leadership role on
   an intelligent, creative team
-- Motto: "Never. Stop. Learning."
+- Motto: "Never Stop Learning"
 
 ## Career
 
@@ -60,8 +61,8 @@ agency work.
 
 ## Site sections
 
-- [Home](https://miguelgarcia.site/): hero, about, experience, selected
-  projects, skills & tools, an "Ask my AI assistant" section, and a contact
+- [Home](https://miguelgarcia.site/): hero with an "Ask my AI assistant"
+  prompt, about, experience, selected projects, skills & tools, and a contact
   form
 - Ask: https://miguelgarcia.site/#ask — an assistant that answers questions
   about Miguel's experience, projects, leadership, and skills using only

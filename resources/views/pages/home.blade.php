@@ -61,9 +61,6 @@
             <x-portfolio.brands />
             <x-portfolio.projects />
             <x-portfolio.stack />
-            @if (config('ai.enabled'))
-                <x-portfolio.ask />
-            @endif
             <x-portfolio.contact />
         </main>
         <x-portfolio.footer />

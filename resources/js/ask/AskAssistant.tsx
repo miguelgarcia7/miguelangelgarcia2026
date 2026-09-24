@@ -133,61 +133,24 @@ export function AskAssistant({ config }: { config: AskConfig }) {
 
     const remaining = config.maxLength - draft.length;
     const isEmpty = messages.length === 0;
+    const placeholder = useRotatingPlaceholder(config.suggestions, draft === '');
 
     return (
-        <div className="overflow-hidden rounded-[24px] border border-line bg-surface-deep shadow-[0_30px_80px_-40px_rgba(0,0,0,0.8)]">
-            {/* Transcript */}
-            <div
-                ref={logRef}
-                role="log"
-                aria-live="polite"
-                aria-relevant="additions text"
-                aria-label="Conversation with the assistant"
-                className={`flex flex-col gap-5 overflow-y-auto px-5 py-6 min-[601px]:px-8 min-[601px]:py-8 ${
-                    isEmpty ? 'min-h-[220px]' : 'max-h-[min(62vh,640px)] min-h-[320px]'
-                }`}
-            >
-                {isEmpty ? (
-                    <EmptyState suggestions={config.suggestions} onPick={(q) => void ask(q)} />
-                ) : (
-                    messages.map((message) => (
-                        <MessageBubble key={message.id} message={message} contactHref={config.contactHref} onRetry={() => retry(message.id)} />
-                    ))
-                )}
-            </div>
-
-            {/* Follow-up suggestions once a conversation has started */}
-            {!isEmpty && !busy && (
-                <div className="flex flex-wrap items-center gap-2 border-t border-line px-5 py-3 min-[601px]:px-8">
-                    {config.suggestions
-                        .filter((q) => !messages.some((m) => m.role === 'user' && m.content === q))
-                        .slice(0, 3)
-                        .map((q) => (
-                            <SuggestionChip key={q} label={q} small onClick={() => void ask(q)} />
-                        ))}
-                    <button
-                        type="button"
-                        onClick={reset}
-                        className="ml-auto cursor-pointer py-1 text-[13px] font-medium text-faint underline-offset-4 hover:text-soft hover:underline"
-                    >
-                        Start over
-                    </button>
-                </div>
-            )}
-
+        <div>
             {/* Composer */}
-            <form onSubmit={onSubmit} className="border-t border-line bg-surface px-4 py-4 min-[601px]:px-6">
+            <form onSubmit={onSubmit}>
                 <label htmlFor={inputId} className="sr-only">
-                    Your question
+                    Ask a question about Miguel
                 </label>
                 {/* One focus indicator for the whole composer: the wrapper's
                     border turns accent on focus-within, and the textarea's own
                     focus ring is turned off in app.css so the two do not nest. */}
                 <div
-                    className={`flex items-end gap-3 rounded-[16px] border-2 bg-bg px-4 py-3 transition-colors focus-within:border-accent ${
+                    className={`flex items-center gap-3 rounded-[20px] border-2 bg-bg/85 py-2 pl-4 pr-2 transition-[border-color,box-shadow] focus-within:border-accent focus-within:shadow-[0_0_0_6px_rgb(46_230_166/0.08)] min-[601px]:py-3 min-[601px]:pl-5 min-[601px]:pr-3 ${
                         formError ? 'border-danger' : 'border-line-control'
                     }`}
                 >
+                    <SparkIcon />
                     <textarea
                         ref={inputRef}
                         id={inputId}
@@ -200,49 +163,97 @@ export function AskAssistant({ config }: { config: AskConfig }) {
                         onKeyDown={onKeyDown}
                         rows={1}
                         maxLength={config.maxLength + 50}
-                        placeholder="Ask about experience, projects, leadership, or tech…"
+                        placeholder={placeholder}
                         aria-describedby={hintId}
                         aria-invalid={formError ? 'true' : undefined}
                         disabled={busy}
-                        className="max-h-40 min-h-[28px] flex-1 resize-none bg-transparent py-0.5 font-sans text-[15.5px] leading-[1.6] text-ink outline-none placeholder:text-faint disabled:opacity-60"
+                        className="max-h-40 min-h-[28px] flex-1 resize-none bg-transparent py-1 font-sans text-[16px] leading-[1.6] text-ink outline-none placeholder:text-faint disabled:opacity-60 min-[601px]:text-[18px]"
                         style={{ fieldSizing: 'content' } as React.CSSProperties}
                     />
                     <button
                         type="submit"
                         disabled={busy || draft.trim() === ''}
                         aria-label={busy ? 'Waiting for the answer' : 'Send question'}
-                        className="grid h-10 w-10 flex-none cursor-pointer place-items-center rounded-[12px] bg-accent text-on-accent transition-colors hover:bg-accent-bright disabled:cursor-not-allowed disabled:opacity-40"
+                        className="grid h-11 w-11 flex-none cursor-pointer place-items-center rounded-[14px] bg-accent text-on-accent transition-colors hover:bg-accent-bright disabled:cursor-not-allowed disabled:opacity-40 min-[601px]:h-12 min-[601px]:w-12"
                     >
                         {busy ? <Spinner /> : <SendIcon />}
                     </button>
                 </div>
-                <div id={hintId} className="mt-2 flex items-center justify-between gap-4 text-[12.5px] text-faint">
-                    <span>{formError ? <span className="text-danger">{formError}</span> : 'Enter to send · Shift+Enter for a new line'}</span>
-                    <span aria-hidden="true" className={remaining < 60 ? 'text-danger' : ''}>
-                        {remaining}
-                    </span>
+                <div id={hintId} className="mt-2 flex min-h-[20px] items-center justify-between gap-4 px-1 text-[12.5px] text-faint">
+                    {formError ? <span className="text-danger">{formError}</span> : <span className="sr-only">Enter to send, Shift+Enter for a new line.</span>}
+                    {remaining < 100 && (
+                        <span aria-hidden="true" className={`ml-auto ${remaining < 60 ? 'text-danger' : ''}`}>
+                            {remaining}
+                        </span>
+                    )}
                 </div>
             </form>
+
+            {isEmpty && (
+                <div className="mt-2 flex flex-wrap justify-center gap-2.5">
+                    {config.suggestions.slice(0, 3).map((q) => (
+                        <SuggestionChip key={q} label={q} onClick={() => void ask(q)} />
+                    ))}
+                </div>
+            )}
+
+            {/* Transcript. Always rendered so the live region exists before the
+                first answer arrives; it only takes on the card look once there
+                is something in it. */}
+            <div className={isEmpty ? '' : 'mt-4 overflow-hidden rounded-[22px] border border-line bg-surface-deep shadow-[0_30px_80px_-40px_rgba(0,0,0,0.8)]'}>
+                <div
+                    ref={logRef}
+                    role="log"
+                    aria-live="polite"
+                    aria-relevant="additions text"
+                    aria-label="Conversation with the assistant"
+                    className={isEmpty ? '' : 'flex max-h-[min(52vh,520px)] flex-col gap-5 overflow-y-auto px-5 py-6 min-[601px]:px-7'}
+                >
+                    {messages.map((message) => (
+                        <MessageBubble key={message.id} message={message} contactHref={config.contactHref} onRetry={() => retry(message.id)} />
+                    ))}
+                </div>
+
+                {/* Follow-up suggestions once a conversation has started */}
+                {!isEmpty && !busy && (
+                    <div className="flex flex-wrap items-center gap-2 border-t border-line px-5 py-3 min-[601px]:px-7">
+                        {config.suggestions
+                            .filter((q) => !messages.some((m) => m.role === 'user' && m.content === q))
+                            .slice(0, 3)
+                            .map((q) => (
+                                <SuggestionChip key={q} label={q} small onClick={() => void ask(q)} />
+                            ))}
+                        <button
+                            type="button"
+                            onClick={reset}
+                            className="ml-auto cursor-pointer py-1 text-[13px] font-medium text-faint underline-offset-4 hover:text-soft hover:underline"
+                        >
+                            Start over
+                        </button>
+                    </div>
+                )}
+            </div>
         </div>
     );
 }
 
-function EmptyState({ suggestions, onPick }: { suggestions: string[]; onPick: (q: string) => void }) {
-    return (
-        <div className="flex flex-col gap-6">
-            <div className="flex items-start gap-3.5">
-                <AssistantMark />
-                <p className="pt-1 text-[15.5px] leading-[1.65] text-body">
-                    Hi — I answer questions using what Miguel has documented in his portfolio. Try one of these, or ask your own.
-                </p>
-            </div>
-            <div className="flex flex-wrap gap-2.5 min-[601px]:pl-[46px]">
-                {suggestions.map((q) => (
-                    <SuggestionChip key={q} label={q} onClick={() => onPick(q)} />
-                ))}
-            </div>
-        </div>
-    );
+const DEFAULT_PLACEHOLDER = 'Ask me anything about my work…';
+
+/**
+ * Cycles the composer's placeholder through the suggested questions while
+ * the field is empty. Wide screens only: a long question would wrap on a
+ * phone and make the auto-sizing field jump in height.
+ */
+function useRotatingPlaceholder(suggestions: string[], active: boolean): string {
+    const [index, setIndex] = useState(-1);
+
+    useEffect(() => {
+        if (!active || suggestions.length === 0 || !window.matchMedia('(min-width: 601px)').matches) return;
+        const timer = window.setInterval(() => setIndex((i) => (i + 1) % suggestions.length), 3200);
+        return () => window.clearInterval(timer);
+    }, [active, suggestions.length]);
+
+    return index < 0 ? DEFAULT_PLACEHOLDER : suggestions[index];
 }
 
 function SuggestionChip({ label, onClick, small = false }: { label: string; onClick: () => void; small?: boolean }) {
@@ -339,6 +350,17 @@ function Spinner() {
         <svg className="h-5 w-5 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <circle cx="12" cy="12" r="9" stroke="currentColor" strokeOpacity="0.3" strokeWidth="3" />
             <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+        </svg>
+    );
+}
+
+function SparkIcon() {
+    return (
+        <svg className="h-5 w-5 flex-none text-accent" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+                fill="currentColor"
+                d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"
+            />
         </svg>
     );
 }
