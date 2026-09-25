@@ -16,8 +16,8 @@
 - Recent work: QCP Staffing / Minute and Appointment Hub — two major
   applications built end-to-end with an AI-first workflow over the last
   two years
-- Mentorship: mentors students through a code mentorship program with
-  UT Dallas
+- Mentorship: previously mentored students through a code mentorship
+  program with UT Dallas
 - Currently: available for new opportunities; seeking a leadership role on
   an intelligent, creative team
 - Motto: "Never Stop Learning"

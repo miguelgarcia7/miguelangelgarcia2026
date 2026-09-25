@@ -83,7 +83,7 @@ class AiKnowledgeSeeder extends Seeder
                 'slug' => 'mentoring-at-ut-dallas',
                 'categories' => ['Team Collaboration', 'Leadership'],
                 'title' => 'Mentoring aspiring developers through UT Dallas',
-                'summary' => 'Miguel mentors students through a coding mentorship program at UT Dallas.',
+                'summary' => 'Miguel previously mentored students through a coding mentorship program at UT Dallas.',
                 'content' => <<<'TEXT'
                 Miguel has mentored aspiring developers through a coding mentorship program at UT Dallas (The University of Texas at Dallas). Mentorship is one of the things he wants to keep doing in his next role, alongside hands-on engineering and technical leadership.
                 TEXT,
