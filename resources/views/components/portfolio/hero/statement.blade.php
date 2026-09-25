@@ -12,11 +12,14 @@
         </h1>
         <p class="mx-auto mb-10 max-w-[640px] text-[19px] leading-[1.6] text-muted">
             I'm {{ config('portfolio.name') }}, a {{ config('portfolio.job_title') }} specializing in
-            <span class="whitespace-nowrap">AI-driven</span> development and LLM integrations. I architect, build and ship reliable,
-            maintainable products, working closely with designers to get the details right,
-            and I lead the teams that make them happen. Ask my assistant below anything about my work.
+            <span class="whitespace-nowrap">AI-driven</span> development and LLM integrations. I architect, build, and ship robust,
+            highly maintainable products—collaborating closely with designers to perfect the user
+            experience, and empowering the teams that make them happen.
         </p>
         @if (config('ai.enabled'))
+            <p class="mx-auto mb-5 max-w-[640px] text-[17px] font-semibold leading-[1.5] text-ink">
+                Have a question? <span class="font-normal text-muted">Ask my AI assistant below anything about my work.</span>
+            </p>
             <x-portfolio.ask />
         @else
             <x-portfolio.hero.actions center />

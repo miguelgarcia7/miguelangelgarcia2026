@@ -12,27 +12,41 @@
         </h2>
         <x-portfolio.quote author="Steve Jobs" class="mb-[26px]">Stay hungry, stay foolish.</x-portfolio.quote>
         <p class="mb-[18px] text-[17px] leading-[1.72] text-body">
-            My career has grown from building websites to architecting complex web applications
-            and leading the teams behind them. Along the way I've partnered closely with designers,
-            engineers, and business stakeholders to turn ideas into products that scale.
+            My career has evolved from building websites to architecting complex web applications
+            and leading the teams behind them. I partner closely with designers, engineers, and
+            stakeholders to transform abstract ideas into scalable, production-ready products.
+        </p>
+
+        <h3 class="mb-3 mt-9 font-display text-[20px] font-bold tracking-[-0.02em] text-ink">Where I focus</h3>
+        <ul class="flex flex-col gap-3 text-[17px] leading-[1.65] text-body">
+            @foreach ([
+                'Technical Depth' => 'Architecture, maintainability, accessibility (a11y), and steady, predictable delivery.',
+                'Product & Design' => 'Keeping a sharp eye on interface design and intuitive user experience.',
+                'Team & Culture' => 'Cultivating healthy collaboration, efficient decision-making, and high-quality shipping standards.',
+                'Technical Leadership' => 'Empowering engineering teams through clear architectural guardrails, peer code reviews, and knowledge sharing.',
+            ] as $label => $detail)
+                <li class="relative pl-6 before:absolute before:left-0 before:top-[0.72em] before:h-[7px] before:w-[7px] before:rounded-full before:bg-accent">
+                    <span class="font-semibold text-ink">{{ $label }}:</span> {{ $detail }}
+                </li>
+            @endforeach
+        </ul>
+
+        <h3 class="mb-3 mt-9 font-display text-[20px] font-bold tracking-[-0.02em] text-ink">Modern workflows &amp; AI integration</h3>
+        <p class="mb-[18px] text-[17px] leading-[1.72] text-body">
+            AI is a core part of my daily engineering toolkit. I leverage tools like Claude Code and
+            build directly on the Anthropic and OpenAI APIs to rapidly move through research,
+            prototyping, and implementation.
         </p>
         <p class="mb-[18px] text-[17px] leading-[1.72] text-body">
-            I focus on architecture, maintainability, accessibility, and steady delivery, with a
-            sharp eye for good interface design and user experience. I care just as much about how
-            a team works: how it collaborates, makes decisions, and ships quality work. I also
-            mentor aspiring developers through a coding mentorship program at UT Dallas.
+            Crucially, I hold AI-assisted code to the exact same rigorous review, security, and testing
+            standards as any other code. My two most recent applications, QCP Staffing / Minute and
+            Appointment Hub, are live proof of this high-velocity, high-quality approach.
         </p>
-        <p class="mb-[18px] text-[17px] leading-[1.72] text-body">
-            AI is part of how I work every day. I use Claude Code and build directly on the
-            Anthropic and OpenAI APIs to move faster through research, prototyping, and
-            implementation, holding that code to the same review and testing standards as any
-            other. My two most recent applications, QCP Staffing / Minute and Appointment Hub,
-            were built this way.
-        </p>
-        <p class="mb-7 text-[17px] leading-[1.72] text-body">
-            I'm looking for a senior role that combines hands-on engineering with technical
-            leadership, architecture, and mentorship, whether as an engineering lead or a senior
-            individual contributor.
+
+        <h3 class="mb-3 mt-9 font-display text-[20px] font-bold tracking-[-0.02em] text-ink">What's next</h3>
+        <p class="text-[17px] leading-[1.72] text-body">
+            I am seeking a Senior/Lead Full-Stack Engineering or Tech Lead role that bridges hands-on
+            system architecture, technical leadership, and product strategy.
         </p>
         <p class="mt-9 font-display text-[clamp(30px,3.4vw,42px)] font-bold leading-[1.1] tracking-[-0.03em] text-ink">
             Never Stop <span class="text-accent">Learning</span>
