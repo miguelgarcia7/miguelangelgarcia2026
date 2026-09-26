@@ -107,6 +107,7 @@ return [
             'org' => 'RealPage',
             'points' => [
                 'Led and managed a team of developers building B2B & B2C marketing websites, events, CRM and CMS platforms — including realpage.com, Kigo, and Propertyware.',
+                'Mentored developers, onboarded new team members, ran code reviews, and shaped architecture decisions.',
                 'Delivered essential marketing tools that improved efficiency by 70% and reduced costs by 60%.',
                 'Implemented a design library standardizing components, boosting code maintainability by 40%.',
                 'Designed an API system and drove cross-team collaboration.',
@@ -181,6 +182,8 @@ return [
             'label' => 'Infrastructure & Delivery',
             'items' => [
                 ['name' => 'MySQL', 'glyph' => 'SQL', 'background' => 'rgba(0,117,143,.2)', 'color' => '#5cc6e0'],
+                ['name' => 'PostgreSQL', 'glyph' => 'PG', 'background' => 'rgba(51,103,145,.22)', 'color' => '#7fa9d6'],
+                ['name' => 'Redis', 'glyph' => 'R', 'background' => 'rgba(220,56,45,.16)', 'color' => '#ff6f61'],
                 ['name' => 'AWS', 'glyph' => 'aws', 'background' => 'rgba(255,153,0,.14)', 'color' => '#ff9f30'],
                 ['name' => 'CI/CD', 'glyph' => 'CI', 'background' => 'rgba(52,211,153,.14)', 'color' => '#34d399'],
                 ['name' => 'Git', 'glyph' => 'git', 'background' => 'rgba(240,80,50,.14)', 'color' => '#f05032'],
@@ -195,6 +198,7 @@ return [
                 ['name' => 'Claude Code', 'glyph' => 'CC', 'background' => 'rgba(217,119,87,.16)', 'color' => '#d97757'],
                 ['name' => 'Claude API', 'glyph' => '✳', 'background' => 'rgba(217,119,87,.12)', 'color' => '#e08b6d'],
                 ['name' => 'OpenAI API', 'glyph' => '◎', 'background' => 'rgba(16,163,127,.16)', 'color' => '#3ccf9e'],
+                ['name' => 'pgvector', 'glyph' => '⇢', 'background' => 'rgba(51,103,145,.22)', 'color' => '#7fa9d6'],
             ],
         ],
     ],

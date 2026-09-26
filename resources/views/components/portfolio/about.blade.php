@@ -23,7 +23,7 @@
                 'Technical Depth' => 'Architecture, maintainability, accessibility (a11y), and steady, predictable delivery.',
                 'Product & Design' => 'Keeping a sharp eye on interface design and intuitive user experience.',
                 'Team & Culture' => 'Cultivating healthy collaboration, efficient decision-making, and high-quality shipping standards.',
-                'Technical Leadership' => 'Empowering engineering teams through clear architectural guardrails, peer code reviews, and knowledge sharing.',
+                'Technical Leadership' => "I've led engineering teams, mentoring developers, onboarding new team members, running code reviews, and contributing to architecture decisions, and I empower teams through clear architectural guardrails and knowledge sharing.",
             ] as $label => $detail)
                 <li class="relative pl-6 before:absolute before:left-0 before:top-[0.72em] before:h-[7px] before:w-[7px] before:rounded-full before:bg-accent">
                     <span class="font-semibold text-ink">{{ $label }}:</span> {{ $detail }}
