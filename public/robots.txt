@@ -20,6 +20,6 @@ User-agent: CCBot
 User-agent: meta-externalagent
 Disallow:
 
-Sitemap: https://miguelgarcia.site/sitemap.xml
+Sitemap: https://miguelangelgarcia.com/sitemap.xml
 
 # Summary of this site for language models: /llms.txt

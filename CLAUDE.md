@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Miguel Angel Garcia's personal portfolio (miguelgarcia.site) — a **Laravel 13** app whose public page is deliberately **server-rendered Blade** so every crawler — including no-JS AI crawlers — gets full HTML. **The production server has no Node.js**: Node is used at build time only (Vite). React is allowed where it is compiled ahead of time and does not carry the public content:
+Miguel Angel Garcia's personal portfolio (miguelangelgarcia.com) — a **Laravel 13** app whose public page is deliberately **server-rendered Blade** so every crawler — including no-JS AI crawlers — gets full HTML. **The production server has no Node.js**: Node is used at build time only (Vite). React is allowed where it is compiled ahead of time and does not carry the public content:
 
 - the public page stays Blade; its only React is the "Ask about me" island (`resources/js/ask/`), which enhances a server-rendered fallback
 - the admin at `/admin` is Inertia 2 + React + Mantine, client-rendered only (`INERTIA_SSR_ENABLED=false`; never enable SSR)

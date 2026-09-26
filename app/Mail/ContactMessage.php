@@ -34,7 +34,7 @@ class ContactMessage extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: "New message from {$this->senderName} · miguelgarcia.site",
+            subject: "New message from {$this->senderName} · miguelangelgarcia.com",
             replyTo: [new Address($this->senderEmail, $this->senderName)],
         );
     }
