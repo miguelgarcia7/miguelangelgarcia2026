@@ -24,7 +24,6 @@ return [
     'contact_email' => env('CONTACT_TO_ADDRESS', env('MAIL_FROM_ADDRESS')),
     'description' => 'Miguel Angel Garcia is a Senior Full-Stack Engineer in Dallas–Fort Worth specializing in AI-driven development and LLM integrations. He architects, builds and ships reliable web applications with Laravel, React, Vue, and the Claude and OpenAI APIs, and leads the development teams that deliver them.',
     'same_as' => [
-        'https://miguelangelgarcia.com',
         'https://github.com/miguelgarcia7',
         'https://www.linkedin.com/in/miguelgarcia7',
     ],
@@ -155,6 +154,7 @@ return [
         ['name' => 'Which Wich', 'logo' => null],
         ['name' => 'Fresh Thyme', 'logo' => null],
         ['name' => 'Stagen', 'logo' => null],
+        ['name' => 'The Ritz-Carlton Residences, Mammoth', 'logo' => null],
     ],
 
     /*
@@ -189,7 +189,8 @@ return [
                 ['name' => 'Git', 'glyph' => 'git', 'background' => 'rgba(240,80,50,.14)', 'color' => '#f05032'],
                 ['name' => 'Docker', 'glyph' => 'D', 'background' => 'rgba(29,99,237,.16)', 'color' => '#5a8cf5'],
                 ['name' => 'Laravel Forge', 'glyph' => 'F', 'background' => 'rgba(24,182,155,.14)', 'color' => '#2fd0b5'],
-                ['name' => 'Automated Testing', 'glyph' => '✓', 'background' => 'rgba(168,133,255,.14)', 'color' => '#b79df5'],
+                ['name' => 'Pest / PHPUnit', 'glyph' => '✓', 'background' => 'rgba(168,133,255,.14)', 'color' => '#b79df5'],
+                ['name' => 'Playwright', 'glyph' => 'PW', 'background' => 'rgba(45,173,51,.16)', 'color' => '#5fd068'],
             ],
         ],
         [

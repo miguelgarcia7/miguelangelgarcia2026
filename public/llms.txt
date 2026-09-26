@@ -43,7 +43,6 @@
 
 - GitHub: https://github.com/miguelgarcia7
 - LinkedIn: https://www.linkedin.com/in/miguelgarcia7
-- Previous personal site: https://miguelangelgarcia.com
 
 ## Brands worked with
 
@@ -56,18 +55,19 @@ agency work.
 - Languages & frameworks: HTML, CSS, JavaScript, React JS, Vue JS,
   TypeScript, PHP, Laravel, Tailwind CSS
 - Infrastructure & delivery: MySQL, PostgreSQL, Redis, AWS, CI/CD, Git,
-  Docker, Laravel Forge, automated testing (Pest/PHPUnit)
+  Docker, Laravel Forge, automated testing (Pest/PHPUnit), end-to-end testing
+  (Playwright)
 - AI & workflow: Claude Code, Anthropic Claude API, OpenAI API, pgvector
 
 ## Site sections
 
-- [Home](https://miguelgarcia.site/): hero with an "Ask my AI assistant"
+- [Home](https://miguelangelgarcia.com/): hero with an "Ask my AI assistant"
   prompt, about, experience, selected projects, skills & tools, and a contact
   form
-- Ask: https://miguelgarcia.site/#ask — an assistant that answers questions
+- Ask: https://miguelangelgarcia.com/#ask — an assistant that answers questions
   about Miguel's experience, projects, leadership, and skills using only
   content he has written for it; it says so when something is not documented
-- Contact: via the form at https://miguelgarcia.site/#contact
+- Contact: via the form at https://miguelangelgarcia.com/#contact
 
 ## Technical notes
 

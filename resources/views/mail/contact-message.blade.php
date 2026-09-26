@@ -20,7 +20,7 @@
                     <tr>
                         <td style="padding:28px 32px 0 32px;">
                             <p style="margin:0 0 6px 0; font-family:Arial,Helvetica,sans-serif; font-size:12px; font-weight:bold; letter-spacing:1.6px; text-transform:uppercase; color:#2ee6a6;">
-                                miguelgarcia.site
+                                miguelangelgarcia.com
                             </p>
                             <h1 style="margin:0; font-family:Arial,Helvetica,sans-serif; font-size:24px; line-height:1.25; font-weight:bold; color:#f3f5f6;">
                                 New message from the contact form
@@ -86,7 +86,7 @@
                             <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                                 <tr>
                                     <td style="background-color:#2ee6a6; border-radius:10px;">
-                                        <a href="mailto:{{ $senderEmail }}?subject={{ rawurlencode('Re: your message via miguelgarcia.site') }}"
+                                        <a href="mailto:{{ $senderEmail }}?subject={{ rawurlencode('Re: your message via miguelangelgarcia.com') }}"
                                            style="display:inline-block; padding:13px 24px; font-family:Arial,Helvetica,sans-serif; font-size:15px; font-weight:bold; color:#08221a; text-decoration:none;">
                                             Reply to {{ \Illuminate\Support\Str::before($senderName, ' ') }}
                                         </a>
@@ -99,7 +99,7 @@
                 </table>
 
                 <p style="margin:18px 0 0 0; font-family:Arial,Helvetica,sans-serif; font-size:12px; color:#7f858e;">
-                    Sent from the contact form at miguelgarcia.site · {{ now()->format('M j, Y \a\t g:i A') }}
+                    Sent from the contact form at miguelangelgarcia.com · {{ now()->format('M j, Y \a\t g:i A') }}
                 </p>
             </td>
         </tr>
