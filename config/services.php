@@ -37,6 +37,14 @@ return [
             : null,
     ],
 
+    /*
+    | Google Analytics 4. Leave GOOGLE_ANALYTICS_ID unset locally and in
+    | tests so only production traffic is tracked.
+    */
+    'google_analytics' => [
+        'measurement_id' => env('GOOGLE_ANALYTICS_ID'),
+    ],
+
     'resend' => [
         'key' => env('RESEND_API_KEY'),
     ],
