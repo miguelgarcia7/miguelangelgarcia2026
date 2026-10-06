@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useId, useRef, useState, type FormEvent, type KeyboardEvent } from 'react';
 import { Markdown } from './Markdown';
 import { askStream, AskRequestError } from './stream';
-import type { AskConfig, Message } from './types';
+import type { AskConfig, AskSource, Message } from './types';
 
 const NO_INFORMATION_MARKER = "I don't have documented information";
 
@@ -30,13 +30,21 @@ export function AskAssistant({ config }: { config: AskConfig }) {
     useEffect(() => () => abortRef.current?.abort(), []);
 
     const ask = useCallback(
-        async (rawQuestion: string) => {
+        // `source` is set for new questions and left out for retries, so a
+        // retry isn't counted twice in analytics.
+        async (rawQuestion: string, source?: AskSource) => {
             const question = rawQuestion.trim();
             if (!question || busy) return;
 
             if (question.length > config.maxLength) {
                 setFormError(`Please keep your question under ${config.maxLength} characters.`);
                 return;
+            }
+
+            if (source) {
+                // Only how the question was asked — the text stays in the
+                // server's own question log, never in analytics.
+                window.gtag?.('event', 'ask_question', { source: messages.length > 0 ? 'follow_up' : source });
             }
 
             setFormError(null);
@@ -102,14 +110,14 @@ export function AskAssistant({ config }: { config: AskConfig }) {
 
     const onSubmit = (event: FormEvent) => {
         event.preventDefault();
-        void ask(draft);
+        void ask(draft, 'typed');
     };
 
     const onKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
         // Enter sends; Shift+Enter starts a new line.
         if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) {
             event.preventDefault();
-            void ask(draft);
+            void ask(draft, 'typed');
         }
     };
 
@@ -192,7 +200,7 @@ export function AskAssistant({ config }: { config: AskConfig }) {
             {isEmpty && (
                 <div className="mt-2 flex flex-wrap justify-center gap-2.5">
                     {config.suggestions.slice(0, 3).map((q) => (
-                        <SuggestionChip key={q} label={q} onClick={() => void ask(q)} />
+                        <SuggestionChip key={q} label={q} onClick={() => void ask(q, 'suggestion')} />
                     ))}
                 </div>
             )}
@@ -221,7 +229,7 @@ export function AskAssistant({ config }: { config: AskConfig }) {
                             .filter((q) => !messages.some((m) => m.role === 'user' && m.content === q))
                             .slice(0, 3)
                             .map((q) => (
-                                <SuggestionChip key={q} label={q} small onClick={() => void ask(q)} />
+                                <SuggestionChip key={q} label={q} small onClick={() => void ask(q, 'suggestion')} />
                             ))}
                         <button
                             type="button"
