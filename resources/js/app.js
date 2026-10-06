@@ -226,6 +226,9 @@ if (panel) {
 
                 const { html } = await response.json();
                 panel.innerHTML = html;
+
+                // No form fields are sent — just that a message went out.
+                window.gtag?.('event', 'contact_form_submit');
                 bindSendAnother();
 
                 // Move focus into the confirmation: the form the visitor was

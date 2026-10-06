@@ -22,3 +22,13 @@ export interface AskConfig {
     maxHistory: number;
     contactHref: string;
 }
+
+/** How a question was asked, reported to Google Analytics. */
+export type AskSource = 'typed' | 'suggestion';
+
+declare global {
+    interface Window {
+        /** Defined only when Google Analytics is enabled (GOOGLE_ANALYTICS_ID). */
+        gtag?: (command: 'event', name: string, params?: Record<string, string>) => void;
+    }
+}
