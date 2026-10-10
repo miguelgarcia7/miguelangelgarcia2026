@@ -29,6 +29,9 @@
     --color-accent-bright: #5cf0bd;
     --color-accent-deep: #12b47f;
     --color-on-accent: #08221a;
+    /* Secondary gradient hues, from the hero background. */
+    --color-teal: #22c3d6;
+    --color-violet: #6d6af5;
     --color-danger: #ff7a7a;
 
     --color-line: rgb(255 255 255 / 0.07);
@@ -210,6 +213,226 @@ section[tabindex='0']:focus-visible {
 @media (prefers-reduced-motion: reduce) {
     .hero-aurora__blob {
         animation: none;
+    }
+}
+
+/*
+| Gradient accents
+|--------------------------------------------------------------------------
+| Carry the hero's green, teal and violet down the page at low strength.
+*/
+
+/* Section divider: a hairline that glows green to teal in the middle and
+   fades out at the edges. Replaces border-t on each section and the footer. */
+.pf-divider {
+    position: relative;
+}
+
+.pf-divider::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent 4%, rgb(46 230 166 / 0.38) 35%, rgb(34 195 214 / 0.38) 65%, transparent 96%);
+}
+
+/* Ambient glow behind a section, alternating sides: a soft-edged pool of
+   color, blurred like the hero's. The section is `isolate`, so z-index -1
+   sits behind its content but above the page. */
+.pf-glow {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(90px);
+}
+
+.pf-glow--about {
+    left: -160px;
+    top: 40px;
+    width: 620px;
+    height: 520px;
+    background: rgb(46 230 166 / 0.09);
+}
+
+.pf-glow--experience {
+    right: -180px;
+    top: 120px;
+    width: 560px;
+    height: 560px;
+    background: rgb(34 195 214 / 0.08);
+}
+
+.pf-glow--projects {
+    left: -200px;
+    top: 30%;
+    width: 640px;
+    height: 560px;
+    background: rgb(109 106 245 / 0.09);
+}
+
+.pf-glow--stack {
+    right: -180px;
+    top: 10%;
+    width: 620px;
+    height: 520px;
+    background: rgb(46 230 166 / 0.07);
+}
+
+/* Green-to-teal text: section eyebrows, the current role's dates and
+   "Never Stop Learning". inline-block so the gradient spans the words,
+   not the row. */
+.pf-gradient-text {
+    display: inline-block;
+    background: linear-gradient(100deg, var(--color-accent-bright) 0%, var(--color-accent) 45%, var(--color-teal) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Low aurora along the bottom of Contact, echoing the hero so the page
+   opens and closes with the same light. The section is `isolate` and
+   `overflow-hidden`, so this stays behind the form and inside the section. */
+.pf-contact-glow {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.pf-contact-glow > span {
+    position: absolute;
+    left: 50%;
+    border-radius: 50%;
+    filter: blur(90px);
+}
+
+.pf-contact-glow__green {
+    bottom: -260px;
+    width: 760px;
+    height: 420px;
+    margin-left: -520px;
+    background: rgb(46 230 166 / 0.16);
+}
+
+.pf-contact-glow__teal {
+    bottom: -240px;
+    width: 600px;
+    height: 380px;
+    margin-left: -40px;
+    background: rgb(34 195 214 / 0.13);
+}
+
+.pf-contact-glow__violet {
+    bottom: -120px;
+    width: 380px;
+    height: 300px;
+    margin-left: 320px;
+    background: rgb(109 106 245 / 0.1);
+}
+
+/* Gradient borders: the About photo's ring, and project cards on hover. */
+.pf-photo-ring::after,
+.pf-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    pointer-events: none;
+    /* Keeps only the padding band, so the gradient shows as a border. */
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    mask-composite: exclude;
+}
+
+.pf-photo-ring::after {
+    padding: 1.5px;
+    background: linear-gradient(140deg, var(--color-accent-bright), var(--color-teal) 45%, rgb(109 106 245 / 0.7) 80%, rgb(109 106 245 / 0.15));
+}
+
+/* Experience line: green at the current role, fading toward the oldest. */
+.pf-timeline {
+    position: relative;
+}
+
+.pf-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    bottom: 40px;
+    width: 1px;
+    background: linear-gradient(180deg, var(--color-accent) 0%, var(--color-teal) 30%, rgb(255 255 255 / 0.14) 65%, transparent 100%);
+}
+
+/* Project card: a slight top-down sheen, and a gradient border and lift
+   on hover or keyboard focus. */
+.pf-card {
+    position: relative;
+    background: linear-gradient(180deg, #171b20 0%, var(--color-surface) 55%, #111417 100%);
+    transition:
+        transform 0.25s,
+        box-shadow 0.25s;
+}
+
+.pf-card::after {
+    padding: 1px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    background: linear-gradient(140deg, rgb(46 230 166 / 0.7), rgb(34 195 214 / 0.35) 40%, transparent 70%);
+}
+
+.pf-card:hover,
+.pf-card:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 24px 50px -28px rgb(46 230 166 / 0.35);
+}
+
+.pf-card:hover::after,
+.pf-card:focus-visible::after {
+    opacity: 1;
+}
+
+/* Tool card: glows in the tool's own color (--tool-color) on hover. */
+.pf-tool {
+    isolation: isolate;
+    background: linear-gradient(180deg, #13171b, var(--color-surface-deep) 70%);
+}
+
+.pf-tool::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    background: radial-gradient(120% 70% at 50% 0%, color-mix(in srgb, var(--tool-color) 18%, transparent), transparent 70%);
+}
+
+.pf-tool:hover::after {
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pf-card,
+    .pf-card::after,
+    .pf-tool::after {
+        transition: none;
+    }
+
+    .pf-card:hover,
+    .pf-card:focus-visible {
+        transform: none;
     }
 }
 

@@ -1,4 +1,5 @@
-<section id="stack" data-reveal tabindex="0" aria-labelledby="stack-heading" class="border-t border-line px-[7vw] py-24">
+<section id="stack" data-reveal tabindex="0" aria-labelledby="stack-heading" class="pf-divider isolate px-[7vw] py-24">
+    <div class="pf-glow pf-glow--stack" aria-hidden="true"></div>
     <x-portfolio.section-intro
         eyebrow="Toolbox"
         title="Skills & Tools"
@@ -12,7 +13,10 @@
             <h3 class="mb-[18px] text-center text-[13px] font-semibold uppercase tracking-[0.12em] text-faint">{{ $group['label'] }}</h3>
             <div class="grid gap-[18px] max-[560px]:grid-cols-2 min-[561px]:grid-cols-3 min-[1001px]:grid-cols-5">
                 @foreach ($group['items'] as $item)
-                    <div class="relative flex flex-col items-center gap-4 overflow-hidden rounded-[18px] border border-line bg-surface-deep px-[18px] py-[30px] text-center">
+                    <div
+                        class="pf-tool relative flex flex-col items-center gap-4 overflow-hidden rounded-[18px] border border-line px-[18px] py-[30px] text-center"
+                        style="--tool-color: {{ $item['color'] }}"
+                    >
                         <span
                             class="absolute inset-x-4 top-0 h-0.5 opacity-90"
                             style="background: linear-gradient(90deg, transparent, {{ $item['color'] }}, transparent)"
