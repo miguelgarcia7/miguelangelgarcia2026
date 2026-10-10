@@ -58,3 +58,9 @@ A RAG-style assistant grounded only in the knowledge base managed at `/admin/ai-
 - `public/robots.txt` — explicitly allows AI crawlers (GPTBot, ClaudeBot, PerplexityBot, etc.); keep them allowed
 - `public/llms.txt` — AI-readable site summary; keep in sync when content changes
 - `/sitemap.xml` — route in `routes/web.php`; update `lastmod` when content changes
+
+
+## Git commit conventions
+- **Never add `Co-Authored-By: Claude ...` (or any AI assistant) trailer to commit messages.**
+- Do not include AI-attribution footers or sign-offs of any kind.
+- Don't make commits comment too verbose. Keep them to a single line when possible.
