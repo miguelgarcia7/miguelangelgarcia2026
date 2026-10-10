@@ -113,6 +113,107 @@ section[tabindex='0']:focus-visible {
 }
 
 /*
+| Hero background
+|--------------------------------------------------------------------------
+| Blurred green, teal and violet light drifting slowly behind a 64px line
+| grid, with fine grain so the gradient doesn't band and a hairline along
+| the bottom edge. Markup: components/portfolio/hero/statement.blade.php.
+*/
+.hero-aurora {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, #0d1316 0%, var(--color-bg) 85%);
+}
+
+.hero-aurora > * {
+    position: absolute;
+}
+
+.hero-aurora__blob {
+    left: 50%;
+    border-radius: 50%;
+    filter: blur(80px);
+}
+
+.hero-aurora__blob--green {
+    top: -220px;
+    width: 620px;
+    height: 520px;
+    margin-left: -420px;
+    background: rgb(46 230 166 / 0.38);
+    animation: hero-drift-a 18s ease-in-out infinite alternate;
+}
+
+.hero-aurora__blob--teal {
+    top: -120px;
+    width: 520px;
+    height: 480px;
+    margin-left: 20px;
+    background: rgb(34 195 214 / 0.3);
+    animation: hero-drift-b 22s ease-in-out infinite alternate;
+}
+
+.hero-aurora__blob--violet {
+    top: 200px;
+    width: 460px;
+    height: 420px;
+    margin-left: -620px;
+    background: rgb(109 106 245 / 0.2);
+    animation: hero-drift-b 26s ease-in-out infinite alternate-reverse;
+}
+
+.hero-aurora__blob--floor {
+    bottom: -220px;
+    width: 700px;
+    height: 300px;
+    margin-left: -350px;
+    background: rgb(18 180 127 / 0.28);
+}
+
+.hero-aurora__grain {
+    inset: 0;
+    opacity: 0.18;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.hero-aurora__grid {
+    inset: 0;
+    background:
+        linear-gradient(rgb(255 255 255 / 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(255 255 255 / 0.055) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 75% 70% at 50% 35%, #000 30%, transparent 85%);
+}
+
+.hero-aurora__horizon {
+    left: 10%;
+    right: 10%;
+    bottom: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgb(46 230 166 / 0.6), transparent);
+}
+
+@keyframes hero-drift-a {
+    to {
+        transform: translate(60px, 40px) scale(1.08);
+    }
+}
+
+@keyframes hero-drift-b {
+    to {
+        transform: translate(-70px, 30px) scale(0.94);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-aurora__blob {
+        animation: none;
+    }
+}
+
+/*
 | Scroll reveal
 |--------------------------------------------------------------------------
 | `pf-motion` is added by resources/js/app.js, so with JavaScript disabled
