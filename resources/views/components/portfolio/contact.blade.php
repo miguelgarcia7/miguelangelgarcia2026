@@ -4,11 +4,17 @@
     $field = 'w-full rounded-xl border bg-surface px-4 py-[14px] font-sans text-[15.5px] text-ink';
 @endphp
 
-<section id="contact" data-reveal tabindex="0" aria-labelledby="contact-heading" class="border-t border-line px-[7vw] pb-[100px] pt-24">
+<section id="contact" data-reveal tabindex="0" aria-labelledby="contact-heading" class="pf-divider isolate overflow-hidden px-[7vw] pb-[100px] pt-24">
+    {{-- A low glow along the bottom that echoes the hero background. --}}
+    <div class="pf-contact-glow" aria-hidden="true">
+        <span class="pf-contact-glow__green"></span>
+        <span class="pf-contact-glow__teal"></span>
+        <span class="pf-contact-glow__violet"></span>
+    </div>
     {{-- max-w matches the stack groups above so both sections align. --}}
     <div class="mx-auto grid max-w-[1040px] items-start gap-14 max-[900px]:grid-cols-1 max-[900px]:gap-10 min-[901px]:grid-cols-[0.9fr_1.1fr]">
         <div>
-            <p class="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-accent">Contact</p>
+            <p class="mb-4 text-sm font-semibold uppercase tracking-[0.14em] pf-gradient-text">Contact</p>
             <h2 id="contact-heading" class="mb-[15px] font-display text-[clamp(30px,3.6vw,46px)] font-bold leading-[1.08] tracking-[-0.03em]">Let's connect.</h2>
             <p class="text-[17px] leading-[1.7] text-body">
                 Whether it's a role, a question, or just to talk shop — send a note and I'll

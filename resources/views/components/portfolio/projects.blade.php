@@ -1,4 +1,5 @@
-<section id="projects" data-reveal tabindex="0" aria-labelledby="projects-heading" class="border-t border-line px-[7vw] py-24">
+<section id="projects" data-reveal tabindex="0" aria-labelledby="projects-heading" class="pf-divider isolate px-[7vw] py-24">
+    <div class="pf-glow pf-glow--projects" aria-hidden="true"></div>
     <x-portfolio.section-intro
         eyebrow="Selected work"
         title="Projects"
@@ -15,7 +16,7 @@
             <article
                 tabindex="0"
                 aria-labelledby="{{ $projectId }}-title"
-                class="flex flex-col overflow-hidden rounded-[20px] border border-line bg-surface"
+                class="pf-card flex flex-col overflow-hidden rounded-[20px] border border-line"
             >
                 <div class="relative aspect-16/11 overflow-hidden">
                     <x-portfolio.image-slot label="Project image" :src="$project['image']" :alt="$project['title']" />
@@ -25,7 +26,7 @@
                     <p class="mb-4 text-[14.5px] leading-[1.55] text-soft">{{ $project['description'] }}</p>
                     <div class="flex flex-wrap gap-2">
                         @foreach ($project['tags'] as $tag)
-                            <span class="rounded-lg border border-accent/16 bg-accent/10 px-[11px] py-[5px] text-[12.5px] font-semibold text-accent">{{ $tag }}</span>
+                            <span class="rounded-lg border border-accent/16 bg-[linear-gradient(90deg,rgb(46_230_166/0.13),rgb(34_195_214/0.09))] px-[11px] py-[5px] text-[12.5px] font-semibold text-accent">{{ $tag }}</span>
                         @endforeach
                     </div>
                 </div>
