@@ -1,6 +1,14 @@
 <header data-reveal class="relative overflow-hidden px-[7vw] pb-[130px] pt-[120px] text-center">
-    <div class="pointer-events-none absolute -top-[160px] left-1/2 h-[720px] w-[720px] -translate-x-1/2 bg-[radial-gradient(circle,rgba(46,230,166,.18),transparent_62%)]"></div>
-    <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(rgb(255_255_255/0.028)_1px,transparent_1px),linear-gradient(90deg,rgb(255_255_255/0.028)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(circle_at_50%_30%,#000,transparent_72%)]"></div>
+    {{-- Background: drifting gradient + line grid. Styles in resources/css/app.css. --}}
+    <div class="hero-aurora" aria-hidden="true">
+        <div class="hero-aurora__blob hero-aurora__blob--green"></div>
+        <div class="hero-aurora__blob hero-aurora__blob--teal"></div>
+        <div class="hero-aurora__blob hero-aurora__blob--violet"></div>
+        <div class="hero-aurora__blob hero-aurora__blob--floor"></div>
+        <div class="hero-aurora__grain"></div>
+        <div class="hero-aurora__grid"></div>
+        <div class="hero-aurora__horizon"></div>
+    </div>
     <div class="relative mx-auto max-w-[940px]">
         <span class="mb-[30px] inline-flex items-center gap-[9px] rounded-full border border-accent/30 px-[15px] py-[7px] text-[13px] font-semibold text-accent">
             <span class="h-[7px] w-[7px] rounded-full bg-accent shadow-[0_0_10px_#2ee6a6]"></span>
